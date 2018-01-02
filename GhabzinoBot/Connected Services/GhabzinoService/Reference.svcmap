@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4293b0f9-09d5-4d33-9f0e-cf8e8abca89a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://application.billingsystem.ayantech.ir/WebServices/Core.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Core.wsdl" MetadataType="Wsdl" ID="45d91fbd-7d63-4162-aa4b-e8c0ae09174e" SourceId="1" SourceUrl="http://application.billingsystem.ayantech.ir/WebServices/Core.svc?wsdl" />
+    <MetadataFile FileName="Core.xsd" MetadataType="Schema" ID="67b7f5f1-9b02-4c3a-a0e9-993c1a4063ac" SourceId="1" SourceUrl="http://application.billingsystem.ayantech.ir/WebServices/Core.svc?xsd=xsd0" />
+    <MetadataFile FileName="Core1.xsd" MetadataType="Schema" ID="26f5875d-b284-4b24-93d6-2d005c708ccb" SourceId="1" SourceUrl="http://application.billingsystem.ayantech.ir/WebServices/Core.svc?xsd=xsd2" />
+    <MetadataFile FileName="Core.disco" MetadataType="Disco" ID="799a8855-748e-4bcf-8d19-5f0bab3d72c8" SourceId="1" SourceUrl="http://application.billingsystem.ayantech.ir/WebServices/Core.svc?disco" />
+    <MetadataFile FileName="Core2.xsd" MetadataType="Schema" ID="31428012-e132-422e-a356-6174158bd95e" SourceId="1" SourceUrl="http://application.billingsystem.ayantech.ir/WebServices/Core.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

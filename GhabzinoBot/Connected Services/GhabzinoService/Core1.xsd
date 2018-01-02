@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Application" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Application" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ElectricityBillInquiryInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:ElectricityBillInquiryInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectricityBillInquiryInput" nillable="true" type="tns:ElectricityBillInquiryInput" />
+  <xs:complexType name="WebServiceIdentity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WebServiceIdentity" nillable="true" type="tns:WebServiceIdentity" />
+  <xs:complexType name="ElectricityBillInquiryInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ElectricityBillID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectricityBillInquiryInputParams" nillable="true" type="tns:ElectricityBillInquiryInputParams" />
+  <xs:complexType name="ElectricityBillInquiryOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:ElectricityBillInquiryOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectricityBillInquiryOutput" nillable="true" type="tns:ElectricityBillInquiryOutput" />
+  <xs:complexType name="ElectricityBillInquiryOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Amount" type="xs:long" />
+      <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrentDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PreviousDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USSDCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidForPayment" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectricityBillInquiryOutputParams" nillable="true" type="tns:ElectricityBillInquiryOutputParams" />
+  <xs:complexType name="WebServiceStatus">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WebServiceStatus" nillable="true" type="tns:WebServiceStatus" />
+  <xs:complexType name="FixedLineBillInquiryInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:FixedLineBillInquiryInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FixedLineBillInquiryInput" nillable="true" type="tns:FixedLineBillInquiryInput" />
+  <xs:complexType name="FixedLineBillInquiryInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FixedLineNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FixedLineBillInquiryInputParams" nillable="true" type="tns:FixedLineBillInquiryInputParams" />
+  <xs:complexType name="FixedLineBillInquiryOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:FixedLineBillInquiryOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FixedLineBillInquiryOutput" nillable="true" type="tns:FixedLineBillInquiryOutput" />
+  <xs:complexType name="FixedLineBillInquiryOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FinalTerm" nillable="true" type="tns:FixedLineBillOutputParams" />
+      <xs:element minOccurs="0" name="MidTerm" nillable="true" type="tns:FixedLineBillOutputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FixedLineBillInquiryOutputParams" nillable="true" type="tns:FixedLineBillInquiryOutputParams" />
+  <xs:complexType name="FixedLineBillOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:long" />
+      <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USSDCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidForPayment" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FixedLineBillOutputParams" nillable="true" type="tns:FixedLineBillOutputParams" />
+  <xs:complexType name="GasBillInquiryInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:GasBillInquiryInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GasBillInquiryInput" nillable="true" type="tns:GasBillInquiryInput" />
+  <xs:complexType name="GasBillInquiryInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ParticipateCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GasBillInquiryInputParams" nillable="true" type="tns:GasBillInquiryInputParams" />
+  <xs:complexType name="GasBillInquiryOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:GasBillInquiryOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GasBillInquiryOutput" nillable="true" type="tns:GasBillInquiryOutput" />
+  <xs:complexType name="GasBillInquiryOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Amount" type="xs:long" />
+      <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrentDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PreviousDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USSDCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidForPayment" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GasBillInquiryOutputParams" nillable="true" type="tns:GasBillInquiryOutputParams" />
+  <xs:complexType name="GetEndUserInquiryHistoryDetailInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:GetEndUserInquiryHistoryDetailInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetEndUserInquiryHistoryDetailInput" nillable="true" type="tns:GetEndUserInquiryHistoryDetailInput" />
+  <xs:complexType name="GetEndUserInquiryHistoryDetailInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InquiryType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetEndUserInquiryHistoryDetailInputParams" nillable="true" type="tns:GetEndUserInquiryHistoryDetailInputParams" />
+  <xs:complexType name="GetEndUserInquiryHistoryDetailOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:ArrayOfGetEndUserInquiryHistoryDetailOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetEndUserInquiryHistoryDetailOutput" nillable="true" type="tns:GetEndUserInquiryHistoryDetailOutput" />
+  <xs:complexType name="ArrayOfGetEndUserInquiryHistoryDetailOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GetEndUserInquiryHistoryDetailOutputParams" nillable="true" type="tns:GetEndUserInquiryHistoryDetailOutputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGetEndUserInquiryHistoryDetailOutputParams" nillable="true" type="tns:ArrayOfGetEndUserInquiryHistoryDetailOutputParams" />
+  <xs:complexType name="GetEndUserInquiryHistoryDetailOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InquiryDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InquiryType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InquiryValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetEndUserInquiryHistoryDetailOutputParams" nillable="true" type="tns:GetEndUserInquiryHistoryDetailOutputParams" />
+  <xs:complexType name="GetEndUserPaymentHistoryInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetEndUserPaymentHistoryInput" nillable="true" type="tns:GetEndUserPaymentHistoryInput" />
+  <xs:complexType name="GetEndUserPaymentHistoryOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:GetEndUserPaymentHistoryOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetEndUserPaymentHistoryOutput" nillable="true" type="tns:GetEndUserPaymentHistoryOutput" />
+  <xs:complexType name="GetEndUserPaymentHistoryOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillsType" nillable="true" type="tns:ArrayOfHistoryBillTypeOutputParams" />
+      <xs:element minOccurs="0" name="TotalAmount" type="xs:long" />
+      <xs:element minOccurs="0" name="TotalBillsCount" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetEndUserPaymentHistoryOutputParams" nillable="true" type="tns:GetEndUserPaymentHistoryOutputParams" />
+  <xs:complexType name="ArrayOfHistoryBillTypeOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HistoryBillTypeOutputParams" nillable="true" type="tns:HistoryBillTypeOutputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHistoryBillTypeOutputParams" nillable="true" type="tns:ArrayOfHistoryBillTypeOutputParams" />
+  <xs:complexType name="HistoryBillTypeOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillTypeShowName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HistoryBillTypeOutputParams" nillable="true" type="tns:HistoryBillTypeOutputParams" />
+  <xs:complexType name="GetEndUserPaymentHistoryDetailInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:GetEndUserPaymentHistoryDetailInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetEndUserPaymentHistoryDetailInput" nillable="true" type="tns:GetEndUserPaymentHistoryDetailInput" />
+  <xs:complexType name="GetEndUserPaymentHistoryDetailInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetEndUserPaymentHistoryDetailInputParams" nillable="true" type="tns:GetEndUserPaymentHistoryDetailInputParams" />
+  <xs:complexType name="GetEndUserPaymentHistoryDetailOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:GetEndUserPaymentHistoryDetailOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetEndUserPaymentHistoryDetailOutput" nillable="true" type="tns:GetEndUserPaymentHistoryDetailOutput" />
+  <xs:complexType name="GetEndUserPaymentHistoryDetailOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Bills" nillable="true" type="tns:ArrayOfHistoryBillOutputParams" />
+      <xs:element minOccurs="0" name="TotalAmount" type="xs:long" />
+      <xs:element minOccurs="0" name="TotalBillsCount" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetEndUserPaymentHistoryDetailOutputParams" nillable="true" type="tns:GetEndUserPaymentHistoryDetailOutputParams" />
+  <xs:complexType name="ArrayOfHistoryBillOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HistoryBillOutputParams" nillable="true" type="tns:HistoryBillOutputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHistoryBillOutputParams" nillable="true" type="tns:ArrayOfHistoryBillOutputParams" />
+  <xs:complexType name="HistoryBillOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:long" />
+      <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillTypeShowName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecordNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TraceNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionDateTime" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HistoryBillOutputParams" nillable="true" type="tns:HistoryBillOutputParams" />
+  <xs:complexType name="LoginInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:LoginInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginInput" nillable="true" type="tns:LoginInput" />
+  <xs:complexType name="LoginInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivationCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MobileNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginInputParams" nillable="true" type="tns:LoginInputParams" />
+  <xs:complexType name="LoginOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:LoginOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginOutput" nillable="true" type="tns:LoginOutput" />
+  <xs:complexType name="LoginOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Token" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginOutputParams" nillable="true" type="tns:LoginOutputParams" />
+  <xs:complexType name="MCIMobileBillInquiryInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:MCIMobileBillInquiryInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MCIMobileBillInquiryInput" nillable="true" type="tns:MCIMobileBillInquiryInput" />
+  <xs:complexType name="MCIMobileBillInquiryInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MobileNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MCIMobileBillInquiryInputParams" nillable="true" type="tns:MCIMobileBillInquiryInputParams" />
+  <xs:complexType name="MCIMobileBillInquiryOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:MciMobileBillInquiryOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MCIMobileBillInquiryOutput" nillable="true" type="tns:MCIMobileBillInquiryOutput" />
+  <xs:complexType name="MciMobileBillInquiryOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FinalTerm" nillable="true" type="tns:MCIMobileBillOutputParams" />
+      <xs:element minOccurs="0" name="MidTerm" nillable="true" type="tns:MCIMobileBillOutputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MciMobileBillInquiryOutputParams" nillable="true" type="tns:MciMobileBillInquiryOutputParams" />
+  <xs:complexType name="MCIMobileBillOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:long" />
+      <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USSDCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidForPayment" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MCIMobileBillOutputParams" nillable="true" type="tns:MCIMobileBillOutputParams" />
+  <xs:complexType name="PaymentInquiryInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:PaymentInquiryInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentInquiryInput" nillable="true" type="tns:PaymentInquiryInput" />
+  <xs:complexType name="PaymentInquiryInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentInquiryInputParams" nillable="true" type="tns:PaymentInquiryInputParams" />
+  <xs:complexType name="PaymentInquiryOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:PaymentInquiryOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentInquiryOutput" nillable="true" type="tns:PaymentInquiryOutput" />
+  <xs:complexType name="PaymentInquiryOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:long" />
+      <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillTypeShowName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecordNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TraceNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransactionDateTime" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentInquiryOutputParams" nillable="true" type="tns:PaymentInquiryOutputParams" />
+  <xs:complexType name="RemoveEndUserInquiryHistoryDetailInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:RemoveEndUserInquiryHistoryDetailInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemoveEndUserInquiryHistoryDetailInput" nillable="true" type="tns:RemoveEndUserInquiryHistoryDetailInput" />
+  <xs:complexType name="RemoveEndUserInquiryHistoryDetailInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InquiryType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InquiryValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemoveEndUserInquiryHistoryDetailInputParams" nillable="true" type="tns:RemoveEndUserInquiryHistoryDetailInputParams" />
+  <xs:complexType name="RemoveEndUserInquiryHistoryDetailOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RemoveEndUserInquiryHistoryDetailOutput" nillable="true" type="tns:RemoveEndUserInquiryHistoryDetailOutput" />
+  <xs:complexType name="ReportEndUserCommentInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:ReportEndUserCommentInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportEndUserCommentInput" nillable="true" type="tns:ReportEndUserCommentInput" />
+  <xs:complexType name="ReportEndUserCommentInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Score" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportEndUserCommentInputParams" nillable="true" type="tns:ReportEndUserCommentInputParams" />
+  <xs:complexType name="ReportEndUserCommentOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:ReportEndUserCommentOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportEndUserCommentOutput" nillable="true" type="tns:ReportEndUserCommentOutput" />
+  <xs:complexType name="ReportEndUserCommentOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Register" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportEndUserCommentOutputParams" nillable="true" type="tns:ReportEndUserCommentOutputParams" />
+  <xs:complexType name="ReportEndUserStatusInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:ReportEndUserStatusInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportEndUserStatusInput" nillable="true" type="tns:ReportEndUserStatusInput" />
+  <xs:complexType name="ReportEndUserStatusInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationVersion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportEndUserStatusInputParams" nillable="true" type="tns:ReportEndUserStatusInputParams" />
+  <xs:complexType name="ReportEndUserStatusOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportEndUserStatusOutput" nillable="true" type="tns:ReportEndUserStatusOutput" />
+  <xs:complexType name="ReportNewPaymentInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:ArrayOfReportNewPaymentInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportNewPaymentInput" nillable="true" type="tns:ReportNewPaymentInput" />
+  <xs:complexType name="ArrayOfReportNewPaymentInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportNewPaymentInputParams" nillable="true" type="tns:ReportNewPaymentInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReportNewPaymentInputParams" nillable="true" type="tns:ArrayOfReportNewPaymentInputParams" />
+  <xs:complexType name="ReportNewPaymentInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportNewPaymentInputParams" nillable="true" type="tns:ReportNewPaymentInputParams" />
+  <xs:complexType name="ReportNewPaymentOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:ReportNewPaymentOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportNewPaymentOutput" nillable="true" type="tns:ReportNewPaymentOutput" />
+  <xs:complexType name="ReportNewPaymentOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Bills" nillable="true" type="tns:ArrayOfPaymentBillOutputParams" />
+      <xs:element minOccurs="0" name="PaymentKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentLink" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportNewPaymentOutputParams" nillable="true" type="tns:ReportNewPaymentOutputParams" />
+  <xs:complexType name="ArrayOfPaymentBillOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentBillOutputParams" nillable="true" type="tns:PaymentBillOutputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPaymentBillOutputParams" nillable="true" type="tns:ArrayOfPaymentBillOutputParams" />
+  <xs:complexType name="PaymentBillOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:long" />
+      <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillTypeShowName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecordNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USSDCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidForPayment" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentBillOutputParams" nillable="true" type="tns:PaymentBillOutputParams" />
+  <xs:complexType name="ReportPaymentInquiryInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:ArrayOfReportPaymentInquiryInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportPaymentInquiryInput" nillable="true" type="tns:ReportPaymentInquiryInput" />
+  <xs:complexType name="ArrayOfReportPaymentInquiryInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReportPaymentInquiryInputParams" nillable="true" type="tns:ReportPaymentInquiryInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReportPaymentInquiryInputParams" nillable="true" type="tns:ArrayOfReportPaymentInquiryInputParams" />
+  <xs:complexType name="ReportPaymentInquiryInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportPaymentInquiryInputParams" nillable="true" type="tns:ReportPaymentInquiryInputParams" />
+  <xs:complexType name="ReportPaymentInquiryOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReportPaymentInquiryOutput" nillable="true" type="tns:ReportPaymentInquiryOutput" />
+  <xs:complexType name="RequestActivationCodeInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:RequestActivationCodeInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RequestActivationCodeInput" nillable="true" type="tns:RequestActivationCodeInput" />
+  <xs:complexType name="RequestActivationCodeInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicationVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MobileNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RequestActivationCodeInputParams" nillable="true" type="tns:RequestActivationCodeInputParams" />
+  <xs:complexType name="RequestActivationCodeOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:RequestActivationCodeOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RequestActivationCodeOutput" nillable="true" type="tns:RequestActivationCodeOutput" />
+  <xs:complexType name="RequestActivationCodeOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TwoPhaseAuthentication" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RequestActivationCodeOutputParams" nillable="true" type="tns:RequestActivationCodeOutputParams" />
+  <xs:complexType name="TrafficFinesInquiryInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:TrafficFinesInquiryInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrafficFinesInquiryInput" nillable="true" type="tns:TrafficFinesInquiryInput" />
+  <xs:complexType name="TrafficFinesInquiryInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BarCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrafficFinesInquiryInputParams" nillable="true" type="tns:TrafficFinesInquiryInputParams" />
+  <xs:complexType name="TrafficFinesInquiryOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:TrafficFinesInquiryOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrafficFinesInquiryOutput" nillable="true" type="tns:TrafficFinesInquiryOutput" />
+  <xs:complexType name="TrafficFinesInquiryOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Details" nillable="true" type="tns:ArrayOfTrafficFineOutputParams" />
+      <xs:element minOccurs="0" name="PlateNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TotalAmount" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrafficFinesInquiryOutputParams" nillable="true" type="tns:TrafficFinesInquiryOutputParams" />
+  <xs:complexType name="ArrayOfTrafficFineOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TrafficFineOutputParams" nillable="true" type="tns:TrafficFineOutputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTrafficFineOutputParams" nillable="true" type="tns:ArrayOfTrafficFineOutputParams" />
+  <xs:complexType name="TrafficFineOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:long" />
+      <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DateTime" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Delivery" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USSDCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidForPayment" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TrafficFineOutputParams" nillable="true" type="tns:TrafficFineOutputParams" />
+  <xs:complexType name="WaterBillInquiryInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identity" nillable="true" type="tns:WebServiceIdentity" />
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:WaterBillInquiryInputParams" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WaterBillInquiryInput" nillable="true" type="tns:WaterBillInquiryInput" />
+  <xs:complexType name="WaterBillInquiryInputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="WaterBillID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WaterBillInquiryInputParams" nillable="true" type="tns:WaterBillInquiryInputParams" />
+  <xs:complexType name="WaterBillInquiryOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Parameters" nillable="true" type="tns:WaterBillInquiryOutputParams" />
+      <xs:element minOccurs="0" name="Status" nillable="true" type="tns:WebServiceStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WaterBillInquiryOutput" nillable="true" type="tns:WaterBillInquiryOutput" />
+  <xs:complexType name="WaterBillInquiryOutputParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Amount" type="xs:long" />
+      <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrentDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PreviousDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="USSDCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidForPayment" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WaterBillInquiryOutputParams" nillable="true" type="tns:WaterBillInquiryOutputParams" />
+</xs:schema>

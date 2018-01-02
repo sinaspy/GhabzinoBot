@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Core" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="SecureSoap_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://application.billingsystem.ayantech.ir/WebServices/Core.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://application.billingsystem.ayantech.ir/WebServices/Core.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://application.billingsystem.ayantech.ir/WebServices/Core.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Application" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICore_ElectricityBillInquiry_InputMessage">
+    <wsdl:part name="parameters" element="tns:ElectricityBillInquiry" />
+  </wsdl:message>
+  <wsdl:message name="ICore_ElectricityBillInquiry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ElectricityBillInquiryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_FixedLineBillInquiry_InputMessage">
+    <wsdl:part name="parameters" element="tns:FixedLineBillInquiry" />
+  </wsdl:message>
+  <wsdl:message name="ICore_FixedLineBillInquiry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FixedLineBillInquiryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_GasBillInquiry_InputMessage">
+    <wsdl:part name="parameters" element="tns:GasBillInquiry" />
+  </wsdl:message>
+  <wsdl:message name="ICore_GasBillInquiry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GasBillInquiryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_GetEndUserInquiryHistoryDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEndUserInquiryHistoryDetail" />
+  </wsdl:message>
+  <wsdl:message name="ICore_GetEndUserInquiryHistoryDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEndUserInquiryHistoryDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_GetEndUserPaymentHistory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEndUserPaymentHistory" />
+  </wsdl:message>
+  <wsdl:message name="ICore_GetEndUserPaymentHistory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEndUserPaymentHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_GetEndUserPaymentHistoryDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEndUserPaymentHistoryDetail" />
+  </wsdl:message>
+  <wsdl:message name="ICore_GetEndUserPaymentHistoryDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEndUserPaymentHistoryDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="ICore_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_MCIMobileBillInquiry_InputMessage">
+    <wsdl:part name="parameters" element="tns:MCIMobileBillInquiry" />
+  </wsdl:message>
+  <wsdl:message name="ICore_MCIMobileBillInquiry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MCIMobileBillInquiryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_PaymentInquiry_InputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentInquiry" />
+  </wsdl:message>
+  <wsdl:message name="ICore_PaymentInquiry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PaymentInquiryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_RemoveEndUserInquiryHistoryDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveEndUserInquiryHistoryDetail" />
+  </wsdl:message>
+  <wsdl:message name="ICore_RemoveEndUserInquiryHistoryDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveEndUserInquiryHistoryDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_ReportEndUserComment_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportEndUserComment" />
+  </wsdl:message>
+  <wsdl:message name="ICore_ReportEndUserComment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportEndUserCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_ReportEndUserStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportEndUserStatus" />
+  </wsdl:message>
+  <wsdl:message name="ICore_ReportEndUserStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportEndUserStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_ReportNewPayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportNewPayment" />
+  </wsdl:message>
+  <wsdl:message name="ICore_ReportNewPayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportNewPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_ReportPaymentInquiry_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportPaymentInquiry" />
+  </wsdl:message>
+  <wsdl:message name="ICore_ReportPaymentInquiry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportPaymentInquiryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_RequestActivationCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:RequestActivationCode" />
+  </wsdl:message>
+  <wsdl:message name="ICore_RequestActivationCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RequestActivationCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_TrafficFinesInquiry_InputMessage">
+    <wsdl:part name="parameters" element="tns:TrafficFinesInquiry" />
+  </wsdl:message>
+  <wsdl:message name="ICore_TrafficFinesInquiry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TrafficFinesInquiryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_WaterBillInquiry_InputMessage">
+    <wsdl:part name="parameters" element="tns:WaterBillInquiry" />
+  </wsdl:message>
+  <wsdl:message name="ICore_WaterBillInquiry_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WaterBillInquiryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICore">
+    <wsdl:operation name="ElectricityBillInquiry">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/ElectricityBillInquiry" message="tns:ICore_ElectricityBillInquiry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/ElectricityBillInquiryResponse" message="tns:ICore_ElectricityBillInquiry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FixedLineBillInquiry">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/FixedLineBillInquiry" message="tns:ICore_FixedLineBillInquiry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/FixedLineBillInquiryResponse" message="tns:ICore_FixedLineBillInquiry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GasBillInquiry">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/GasBillInquiry" message="tns:ICore_GasBillInquiry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/GasBillInquiryResponse" message="tns:ICore_GasBillInquiry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEndUserInquiryHistoryDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/GetEndUserInquiryHistoryDetail" message="tns:ICore_GetEndUserInquiryHistoryDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/GetEndUserInquiryHistoryDetailResponse" message="tns:ICore_GetEndUserInquiryHistoryDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEndUserPaymentHistory">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/GetEndUserPaymentHistory" message="tns:ICore_GetEndUserPaymentHistory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/GetEndUserPaymentHistoryResponse" message="tns:ICore_GetEndUserPaymentHistory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEndUserPaymentHistoryDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/GetEndUserPaymentHistoryDetail" message="tns:ICore_GetEndUserPaymentHistoryDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/GetEndUserPaymentHistoryDetailResponse" message="tns:ICore_GetEndUserPaymentHistoryDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/Login" message="tns:ICore_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/LoginResponse" message="tns:ICore_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MCIMobileBillInquiry">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/MCIMobileBillInquiry" message="tns:ICore_MCIMobileBillInquiry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/MCIMobileBillInquiryResponse" message="tns:ICore_MCIMobileBillInquiry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PaymentInquiry">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/PaymentInquiry" message="tns:ICore_PaymentInquiry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/PaymentInquiryResponse" message="tns:ICore_PaymentInquiry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveEndUserInquiryHistoryDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/RemoveEndUserInquiryHistoryDetail" message="tns:ICore_RemoveEndUserInquiryHistoryDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/RemoveEndUserInquiryHistoryDetailResponse" message="tns:ICore_RemoveEndUserInquiryHistoryDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportEndUserComment">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/ReportEndUserComment" message="tns:ICore_ReportEndUserComment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/ReportEndUserCommentResponse" message="tns:ICore_ReportEndUserComment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportEndUserStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/ReportEndUserStatus" message="tns:ICore_ReportEndUserStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/ReportEndUserStatusResponse" message="tns:ICore_ReportEndUserStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportNewPayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/ReportNewPayment" message="tns:ICore_ReportNewPayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/ReportNewPaymentResponse" message="tns:ICore_ReportNewPayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportPaymentInquiry">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/ReportPaymentInquiry" message="tns:ICore_ReportPaymentInquiry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/ReportPaymentInquiryResponse" message="tns:ICore_ReportPaymentInquiry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RequestActivationCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/RequestActivationCode" message="tns:ICore_RequestActivationCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/RequestActivationCodeResponse" message="tns:ICore_RequestActivationCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TrafficFinesInquiry">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/TrafficFinesInquiry" message="tns:ICore_TrafficFinesInquiry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/TrafficFinesInquiryResponse" message="tns:ICore_TrafficFinesInquiry_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WaterBillInquiry">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/WaterBillInquiry" message="tns:ICore_WaterBillInquiry_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/WaterBillInquiryResponse" message="tns:ICore_WaterBillInquiry_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Soap" type="tns:ICore">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ElectricityBillInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/ElectricityBillInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FixedLineBillInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/FixedLineBillInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GasBillInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/GasBillInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEndUserInquiryHistoryDetail">
+      <soap:operation soapAction="http://tempuri.org/ICore/GetEndUserInquiryHistoryDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEndUserPaymentHistory">
+      <soap:operation soapAction="http://tempuri.org/ICore/GetEndUserPaymentHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEndUserPaymentHistoryDetail">
+      <soap:operation soapAction="http://tempuri.org/ICore/GetEndUserPaymentHistoryDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/ICore/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MCIMobileBillInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/MCIMobileBillInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/PaymentInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveEndUserInquiryHistoryDetail">
+      <soap:operation soapAction="http://tempuri.org/ICore/RemoveEndUserInquiryHistoryDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportEndUserComment">
+      <soap:operation soapAction="http://tempuri.org/ICore/ReportEndUserComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportEndUserStatus">
+      <soap:operation soapAction="http://tempuri.org/ICore/ReportEndUserStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportNewPayment">
+      <soap:operation soapAction="http://tempuri.org/ICore/ReportNewPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportPaymentInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/ReportPaymentInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestActivationCode">
+      <soap:operation soapAction="http://tempuri.org/ICore/RequestActivationCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrafficFinesInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/TrafficFinesInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WaterBillInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/WaterBillInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SecureSoap" type="tns:ICore">
+    <wsp:PolicyReference URI="#SecureSoap_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ElectricityBillInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/ElectricityBillInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FixedLineBillInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/FixedLineBillInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GasBillInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/GasBillInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEndUserInquiryHistoryDetail">
+      <soap:operation soapAction="http://tempuri.org/ICore/GetEndUserInquiryHistoryDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEndUserPaymentHistory">
+      <soap:operation soapAction="http://tempuri.org/ICore/GetEndUserPaymentHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEndUserPaymentHistoryDetail">
+      <soap:operation soapAction="http://tempuri.org/ICore/GetEndUserPaymentHistoryDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/ICore/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MCIMobileBillInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/MCIMobileBillInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaymentInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/PaymentInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveEndUserInquiryHistoryDetail">
+      <soap:operation soapAction="http://tempuri.org/ICore/RemoveEndUserInquiryHistoryDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportEndUserComment">
+      <soap:operation soapAction="http://tempuri.org/ICore/ReportEndUserComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportEndUserStatus">
+      <soap:operation soapAction="http://tempuri.org/ICore/ReportEndUserStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportNewPayment">
+      <soap:operation soapAction="http://tempuri.org/ICore/ReportNewPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportPaymentInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/ReportPaymentInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RequestActivationCode">
+      <soap:operation soapAction="http://tempuri.org/ICore/RequestActivationCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TrafficFinesInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/TrafficFinesInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WaterBillInquiry">
+      <soap:operation soapAction="http://tempuri.org/ICore/WaterBillInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Core">
+    <wsdl:port name="Soap" binding="tns:Soap">
+      <soap:address location="http://application.billingsystem.ayantech.ir/WebServices/Core.svc/soap" />
+    </wsdl:port>
+    <wsdl:port name="SecureSoap" binding="tns:SecureSoap">
+      <soap:address location="https://application.billingsystem.ayantech.ir/WebServices/Core.svc/soap" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
