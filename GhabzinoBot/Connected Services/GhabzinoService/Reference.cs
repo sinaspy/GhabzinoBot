@@ -15,9 +15,9 @@ namespace GhabzinoBot.GhabzinoService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ElectricityBillInquiryInput", Namespace="http://schemas.datacontract.org/2004/07/Application")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EditEndUserInquiryHistoryDetailInput", Namespace="http://schemas.datacontract.org/2004/07/Application")]
     [System.SerializableAttribute()]
-    public partial class ElectricityBillInquiryInput : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class EditEndUserInquiryHistoryDetailInput : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -26,7 +26,7 @@ namespace GhabzinoBot.GhabzinoService {
         private GhabzinoBot.GhabzinoService.WebServiceIdentity IdentityField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GhabzinoBot.GhabzinoService.ElectricityBillInquiryInputParams ParametersField;
+        private GhabzinoBot.GhabzinoService.EditEndUserInquiryHistoryDetailInputParams ParametersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -52,7 +52,7 @@ namespace GhabzinoBot.GhabzinoService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GhabzinoBot.GhabzinoService.ElectricityBillInquiryInputParams Parameters {
+        public GhabzinoBot.GhabzinoService.EditEndUserInquiryHistoryDetailInputParams Parameters {
             get {
                 return this.ParametersField;
             }
@@ -105,6 +105,250 @@ namespace GhabzinoBot.GhabzinoService {
                 if ((object.ReferenceEquals(this.TokenField, value) != true)) {
                     this.TokenField = value;
                     this.RaisePropertyChanged("Token");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EditEndUserInquiryHistoryDetailInputParams", Namespace="http://schemas.datacontract.org/2004/07/Application")]
+    [System.SerializableAttribute()]
+    public partial class EditEndUserInquiryHistoryDetailInputParams : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string InquiryDescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool InquiryFavoriteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long InquiryIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string InquiryDescription {
+            get {
+                return this.InquiryDescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.InquiryDescriptionField, value) != true)) {
+                    this.InquiryDescriptionField = value;
+                    this.RaisePropertyChanged("InquiryDescription");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool InquiryFavorite {
+            get {
+                return this.InquiryFavoriteField;
+            }
+            set {
+                if ((this.InquiryFavoriteField.Equals(value) != true)) {
+                    this.InquiryFavoriteField = value;
+                    this.RaisePropertyChanged("InquiryFavorite");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long InquiryID {
+            get {
+                return this.InquiryIDField;
+            }
+            set {
+                if ((this.InquiryIDField.Equals(value) != true)) {
+                    this.InquiryIDField = value;
+                    this.RaisePropertyChanged("InquiryID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EditEndUserInquiryHistoryDetailOutput", Namespace="http://schemas.datacontract.org/2004/07/Application")]
+    [System.SerializableAttribute()]
+    public partial class EditEndUserInquiryHistoryDetailOutput : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GhabzinoBot.GhabzinoService.WebServiceStatus StatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GhabzinoBot.GhabzinoService.WebServiceStatus Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WebServiceStatus", Namespace="http://schemas.datacontract.org/2004/07/Application")]
+    [System.SerializableAttribute()]
+    public partial class WebServiceStatus : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Code {
+            get {
+                return this.CodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodeField, value) != true)) {
+                    this.CodeField = value;
+                    this.RaisePropertyChanged("Code");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ElectricityBillInquiryInput", Namespace="http://schemas.datacontract.org/2004/07/Application")]
+    [System.SerializableAttribute()]
+    public partial class ElectricityBillInquiryInput : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GhabzinoBot.GhabzinoService.WebServiceIdentity IdentityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GhabzinoBot.GhabzinoService.ElectricityBillInquiryInputParams ParametersField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GhabzinoBot.GhabzinoService.WebServiceIdentity Identity {
+            get {
+                return this.IdentityField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdentityField, value) != true)) {
+                    this.IdentityField = value;
+                    this.RaisePropertyChanged("Identity");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GhabzinoBot.GhabzinoService.ElectricityBillInquiryInputParams Parameters {
+            get {
+                return this.ParametersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ParametersField, value) != true)) {
+                    this.ParametersField = value;
+                    this.RaisePropertyChanged("Parameters");
                 }
             }
         }
@@ -230,6 +474,227 @@ namespace GhabzinoBot.GhabzinoService {
     [System.Runtime.Serialization.DataContractAttribute(Name="ElectricityBillInquiryOutputParams", Namespace="http://schemas.datacontract.org/2004/07/Application")]
     [System.SerializableAttribute()]
     public partial class ElectricityBillInquiryOutputParams : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long AmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GhabzinoBot.GhabzinoService.WaterAndGasAndElectricityBillOutputParams BillField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string BillIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CurrentDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FullNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GhabzinoBot.GhabzinoService.InquiryDetailOutputParams InquiryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PaymentDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PaymentIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PreviousDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string USSDCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ValidForPaymentField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Amount {
+            get {
+                return this.AmountField;
+            }
+            set {
+                if ((this.AmountField.Equals(value) != true)) {
+                    this.AmountField = value;
+                    this.RaisePropertyChanged("Amount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GhabzinoBot.GhabzinoService.WaterAndGasAndElectricityBillOutputParams Bill {
+            get {
+                return this.BillField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BillField, value) != true)) {
+                    this.BillField = value;
+                    this.RaisePropertyChanged("Bill");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string BillID {
+            get {
+                return this.BillIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BillIDField, value) != true)) {
+                    this.BillIDField = value;
+                    this.RaisePropertyChanged("BillID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CurrentDate {
+            get {
+                return this.CurrentDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CurrentDateField, value) != true)) {
+                    this.CurrentDateField = value;
+                    this.RaisePropertyChanged("CurrentDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FullName {
+            get {
+                return this.FullNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
+                    this.FullNameField = value;
+                    this.RaisePropertyChanged("FullName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GhabzinoBot.GhabzinoService.InquiryDetailOutputParams Inquiry {
+            get {
+                return this.InquiryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.InquiryField, value) != true)) {
+                    this.InquiryField = value;
+                    this.RaisePropertyChanged("Inquiry");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PaymentDate {
+            get {
+                return this.PaymentDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PaymentDateField, value) != true)) {
+                    this.PaymentDateField = value;
+                    this.RaisePropertyChanged("PaymentDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PaymentID {
+            get {
+                return this.PaymentIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PaymentIDField, value) != true)) {
+                    this.PaymentIDField = value;
+                    this.RaisePropertyChanged("PaymentID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string PreviousDate {
+            get {
+                return this.PreviousDateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PreviousDateField, value) != true)) {
+                    this.PreviousDateField = value;
+                    this.RaisePropertyChanged("PreviousDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string USSDCode {
+            get {
+                return this.USSDCodeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.USSDCodeField, value) != true)) {
+                    this.USSDCodeField = value;
+                    this.RaisePropertyChanged("USSDCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ValidForPayment {
+            get {
+                return this.ValidForPaymentField;
+            }
+            set {
+                if ((this.ValidForPaymentField.Equals(value) != true)) {
+                    this.ValidForPaymentField = value;
+                    this.RaisePropertyChanged("ValidForPayment");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WaterAndGasAndElectricityBillOutputParams", Namespace="http://schemas.datacontract.org/2004/07/Application")]
+    [System.SerializableAttribute()]
+    public partial class WaterAndGasAndElectricityBillOutputParams : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -416,18 +881,27 @@ namespace GhabzinoBot.GhabzinoService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="WebServiceStatus", Namespace="http://schemas.datacontract.org/2004/07/Application")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InquiryDetailOutputParams", Namespace="http://schemas.datacontract.org/2004/07/Application")]
     [System.SerializableAttribute()]
-    public partial class WebServiceStatus : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class InquiryDetailOutputParams : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CodeField;
+        private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
+        private bool FavoriteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ValueField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -440,19 +914,6 @@ namespace GhabzinoBot.GhabzinoService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Code {
-            get {
-                return this.CodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CodeField, value) != true)) {
-                    this.CodeField = value;
-                    this.RaisePropertyChanged("Code");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Description {
             get {
                 return this.DescriptionField;
@@ -461,6 +922,58 @@ namespace GhabzinoBot.GhabzinoService {
                 if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
                     this.DescriptionField = value;
                     this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Favorite {
+            get {
+                return this.FavoriteField;
+            }
+            set {
+                if ((this.FavoriteField.Equals(value) != true)) {
+                    this.FavoriteField = value;
+                    this.RaisePropertyChanged("Favorite");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Value {
+            get {
+                return this.ValueField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ValueField, value) != true)) {
+                    this.ValueField = value;
+                    this.RaisePropertyChanged("Value");
                 }
             }
         }
@@ -652,10 +1165,13 @@ namespace GhabzinoBot.GhabzinoService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GhabzinoBot.GhabzinoService.FixedLineBillOutputParams FinalTermField;
+        private GhabzinoBot.GhabzinoService.FixedLineAndMCIMobileBillOutputParams FinalTermField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GhabzinoBot.GhabzinoService.FixedLineBillOutputParams MidTermField;
+        private GhabzinoBot.GhabzinoService.InquiryDetailOutputParams InquiryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GhabzinoBot.GhabzinoService.FixedLineAndMCIMobileBillOutputParams MidTermField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -668,7 +1184,7 @@ namespace GhabzinoBot.GhabzinoService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GhabzinoBot.GhabzinoService.FixedLineBillOutputParams FinalTerm {
+        public GhabzinoBot.GhabzinoService.FixedLineAndMCIMobileBillOutputParams FinalTerm {
             get {
                 return this.FinalTermField;
             }
@@ -681,7 +1197,20 @@ namespace GhabzinoBot.GhabzinoService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GhabzinoBot.GhabzinoService.FixedLineBillOutputParams MidTerm {
+        public GhabzinoBot.GhabzinoService.InquiryDetailOutputParams Inquiry {
+            get {
+                return this.InquiryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.InquiryField, value) != true)) {
+                    this.InquiryField = value;
+                    this.RaisePropertyChanged("Inquiry");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GhabzinoBot.GhabzinoService.FixedLineAndMCIMobileBillOutputParams MidTerm {
             get {
                 return this.MidTermField;
             }
@@ -705,9 +1234,9 @@ namespace GhabzinoBot.GhabzinoService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="FixedLineBillOutputParams", Namespace="http://schemas.datacontract.org/2004/07/Application")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FixedLineAndMCIMobileBillOutputParams", Namespace="http://schemas.datacontract.org/2004/07/Application")]
     [System.SerializableAttribute()]
-    public partial class FixedLineBillOutputParams : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class FixedLineAndMCIMobileBillOutputParams : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -995,6 +1524,9 @@ namespace GhabzinoBot.GhabzinoService {
         private long AmountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GhabzinoBot.GhabzinoService.WaterAndGasAndElectricityBillOutputParams BillField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string BillIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1002,6 +1534,9 @@ namespace GhabzinoBot.GhabzinoService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FullNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GhabzinoBot.GhabzinoService.InquiryDetailOutputParams InquiryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PaymentDateField;
@@ -1055,6 +1590,19 @@ namespace GhabzinoBot.GhabzinoService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public GhabzinoBot.GhabzinoService.WaterAndGasAndElectricityBillOutputParams Bill {
+            get {
+                return this.BillField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BillField, value) != true)) {
+                    this.BillField = value;
+                    this.RaisePropertyChanged("Bill");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string BillID {
             get {
                 return this.BillIDField;
@@ -1089,6 +1637,19 @@ namespace GhabzinoBot.GhabzinoService {
                 if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
                     this.FullNameField = value;
                     this.RaisePropertyChanged("FullName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GhabzinoBot.GhabzinoService.InquiryDetailOutputParams Inquiry {
+            get {
+                return this.InquiryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.InquiryField, value) != true)) {
+                    this.InquiryField = value;
+                    this.RaisePropertyChanged("Inquiry");
                 }
             }
         }
@@ -1284,7 +1845,7 @@ namespace GhabzinoBot.GhabzinoService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GhabzinoBot.GhabzinoService.GetEndUserInquiryHistoryDetailOutputParams[] ParametersField;
+        private GhabzinoBot.GhabzinoService.GetEndUserInquiryHistoryDetailOutputParams ParametersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private GhabzinoBot.GhabzinoService.WebServiceStatus StatusField;
@@ -1300,7 +1861,7 @@ namespace GhabzinoBot.GhabzinoService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GhabzinoBot.GhabzinoService.GetEndUserInquiryHistoryDetailOutputParams[] Parameters {
+        public GhabzinoBot.GhabzinoService.GetEndUserInquiryHistoryDetailOutputParams Parameters {
             get {
                 return this.ParametersField;
             }
@@ -1345,13 +1906,10 @@ namespace GhabzinoBot.GhabzinoService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string InquiryDescriptionField;
+        private GhabzinoBot.GhabzinoService.InquiryDetailOutputParams[] InquiryHistoryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string InquiryTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string InquiryValueField;
+        private long TotalInquiryHistoryCountField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1364,40 +1922,27 @@ namespace GhabzinoBot.GhabzinoService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string InquiryDescription {
+        public GhabzinoBot.GhabzinoService.InquiryDetailOutputParams[] InquiryHistory {
             get {
-                return this.InquiryDescriptionField;
+                return this.InquiryHistoryField;
             }
             set {
-                if ((object.ReferenceEquals(this.InquiryDescriptionField, value) != true)) {
-                    this.InquiryDescriptionField = value;
-                    this.RaisePropertyChanged("InquiryDescription");
+                if ((object.ReferenceEquals(this.InquiryHistoryField, value) != true)) {
+                    this.InquiryHistoryField = value;
+                    this.RaisePropertyChanged("InquiryHistory");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string InquiryType {
+        public long TotalInquiryHistoryCount {
             get {
-                return this.InquiryTypeField;
+                return this.TotalInquiryHistoryCountField;
             }
             set {
-                if ((object.ReferenceEquals(this.InquiryTypeField, value) != true)) {
-                    this.InquiryTypeField = value;
-                    this.RaisePropertyChanged("InquiryType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string InquiryValue {
-            get {
-                return this.InquiryValueField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.InquiryValueField, value) != true)) {
-                    this.InquiryValueField = value;
-                    this.RaisePropertyChanged("InquiryValue");
+                if ((this.TotalInquiryHistoryCountField.Equals(value) != true)) {
+                    this.TotalInquiryHistoryCountField = value;
+                    this.RaisePropertyChanged("TotalInquiryHistoryCount");
                 }
             }
         }
@@ -2494,10 +3039,13 @@ namespace GhabzinoBot.GhabzinoService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GhabzinoBot.GhabzinoService.MCIMobileBillOutputParams FinalTermField;
+        private GhabzinoBot.GhabzinoService.FixedLineAndMCIMobileBillOutputParams FinalTermField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GhabzinoBot.GhabzinoService.MCIMobileBillOutputParams MidTermField;
+        private GhabzinoBot.GhabzinoService.InquiryDetailOutputParams InquiryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GhabzinoBot.GhabzinoService.FixedLineAndMCIMobileBillOutputParams MidTermField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -2510,7 +3058,7 @@ namespace GhabzinoBot.GhabzinoService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GhabzinoBot.GhabzinoService.MCIMobileBillOutputParams FinalTerm {
+        public GhabzinoBot.GhabzinoService.FixedLineAndMCIMobileBillOutputParams FinalTerm {
             get {
                 return this.FinalTermField;
             }
@@ -2523,7 +3071,20 @@ namespace GhabzinoBot.GhabzinoService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GhabzinoBot.GhabzinoService.MCIMobileBillOutputParams MidTerm {
+        public GhabzinoBot.GhabzinoService.InquiryDetailOutputParams Inquiry {
+            get {
+                return this.InquiryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.InquiryField, value) != true)) {
+                    this.InquiryField = value;
+                    this.RaisePropertyChanged("Inquiry");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GhabzinoBot.GhabzinoService.FixedLineAndMCIMobileBillOutputParams MidTerm {
             get {
                 return this.MidTermField;
             }
@@ -2531,115 +3092,6 @@ namespace GhabzinoBot.GhabzinoService {
                 if ((object.ReferenceEquals(this.MidTermField, value) != true)) {
                     this.MidTermField = value;
                     this.RaisePropertyChanged("MidTerm");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MCIMobileBillOutputParams", Namespace="http://schemas.datacontract.org/2004/07/Application")]
-    [System.SerializableAttribute()]
-    public partial class MCIMobileBillOutputParams : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long AmountField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string BillIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PaymentIDField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string USSDCodeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ValidForPaymentField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Amount {
-            get {
-                return this.AmountField;
-            }
-            set {
-                if ((this.AmountField.Equals(value) != true)) {
-                    this.AmountField = value;
-                    this.RaisePropertyChanged("Amount");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string BillID {
-            get {
-                return this.BillIDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.BillIDField, value) != true)) {
-                    this.BillIDField = value;
-                    this.RaisePropertyChanged("BillID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PaymentID {
-            get {
-                return this.PaymentIDField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PaymentIDField, value) != true)) {
-                    this.PaymentIDField = value;
-                    this.RaisePropertyChanged("PaymentID");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string USSDCode {
-            get {
-                return this.USSDCodeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.USSDCodeField, value) != true)) {
-                    this.USSDCodeField = value;
-                    this.RaisePropertyChanged("USSDCode");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool ValidForPayment {
-            get {
-                return this.ValidForPaymentField;
-            }
-            set {
-                if ((this.ValidForPaymentField.Equals(value) != true)) {
-                    this.ValidForPaymentField = value;
-                    this.RaisePropertyChanged("ValidForPayment");
                 }
             }
         }
@@ -3081,10 +3533,7 @@ namespace GhabzinoBot.GhabzinoService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string InquiryTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string InquiryValueField;
+        private long InquiryIDField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -3097,27 +3546,14 @@ namespace GhabzinoBot.GhabzinoService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string InquiryType {
+        public long InquiryID {
             get {
-                return this.InquiryTypeField;
+                return this.InquiryIDField;
             }
             set {
-                if ((object.ReferenceEquals(this.InquiryTypeField, value) != true)) {
-                    this.InquiryTypeField = value;
-                    this.RaisePropertyChanged("InquiryType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string InquiryValue {
-            get {
-                return this.InquiryValueField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.InquiryValueField, value) != true)) {
-                    this.InquiryValueField = value;
-                    this.RaisePropertyChanged("InquiryValue");
+                if ((this.InquiryIDField.Equals(value) != true)) {
+                    this.InquiryIDField = value;
+                    this.RaisePropertyChanged("InquiryID");
                 }
             }
         }
@@ -4596,10 +5032,16 @@ namespace GhabzinoBot.GhabzinoService {
         private GhabzinoBot.GhabzinoService.TrafficFineOutputParams[] DetailsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GhabzinoBot.GhabzinoService.InquiryDetailOutputParams InquiryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PlateNumberField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private long TotalAmountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long TotalValidForPaymentCountField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -4620,6 +5062,19 @@ namespace GhabzinoBot.GhabzinoService {
                 if ((object.ReferenceEquals(this.DetailsField, value) != true)) {
                     this.DetailsField = value;
                     this.RaisePropertyChanged("Details");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GhabzinoBot.GhabzinoService.InquiryDetailOutputParams Inquiry {
+            get {
+                return this.InquiryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.InquiryField, value) != true)) {
+                    this.InquiryField = value;
+                    this.RaisePropertyChanged("Inquiry");
                 }
             }
         }
@@ -4646,6 +5101,19 @@ namespace GhabzinoBot.GhabzinoService {
                 if ((this.TotalAmountField.Equals(value) != true)) {
                     this.TotalAmountField = value;
                     this.RaisePropertyChanged("TotalAmount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long TotalValidForPaymentCount {
+            get {
+                return this.TotalValidForPaymentCountField;
+            }
+            set {
+                if ((this.TotalValidForPaymentCountField.Equals(value) != true)) {
+                    this.TotalValidForPaymentCountField = value;
+                    this.RaisePropertyChanged("TotalValidForPaymentCount");
                 }
             }
         }
@@ -5032,6 +5500,9 @@ namespace GhabzinoBot.GhabzinoService {
         private long AmountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GhabzinoBot.GhabzinoService.WaterAndGasAndElectricityBillOutputParams BillField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string BillIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -5039,6 +5510,9 @@ namespace GhabzinoBot.GhabzinoService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FullNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GhabzinoBot.GhabzinoService.InquiryDetailOutputParams InquiryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PaymentDateField;
@@ -5092,6 +5566,19 @@ namespace GhabzinoBot.GhabzinoService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public GhabzinoBot.GhabzinoService.WaterAndGasAndElectricityBillOutputParams Bill {
+            get {
+                return this.BillField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.BillField, value) != true)) {
+                    this.BillField = value;
+                    this.RaisePropertyChanged("Bill");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string BillID {
             get {
                 return this.BillIDField;
@@ -5126,6 +5613,19 @@ namespace GhabzinoBot.GhabzinoService {
                 if ((object.ReferenceEquals(this.FullNameField, value) != true)) {
                     this.FullNameField = value;
                     this.RaisePropertyChanged("FullName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GhabzinoBot.GhabzinoService.InquiryDetailOutputParams Inquiry {
+            get {
+                return this.InquiryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.InquiryField, value) != true)) {
+                    this.InquiryField = value;
+                    this.RaisePropertyChanged("Inquiry");
                 }
             }
         }
@@ -5208,6 +5708,12 @@ namespace GhabzinoBot.GhabzinoService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GhabzinoService.ICore")]
     public interface ICore {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICore/EditEndUserInquiryHistoryDetail", ReplyAction="http://tempuri.org/ICore/EditEndUserInquiryHistoryDetailResponse")]
+        GhabzinoBot.GhabzinoService.EditEndUserInquiryHistoryDetailOutput EditEndUserInquiryHistoryDetail(GhabzinoBot.GhabzinoService.EditEndUserInquiryHistoryDetailInput ws);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICore/EditEndUserInquiryHistoryDetail", ReplyAction="http://tempuri.org/ICore/EditEndUserInquiryHistoryDetailResponse")]
+        System.Threading.Tasks.Task<GhabzinoBot.GhabzinoService.EditEndUserInquiryHistoryDetailOutput> EditEndUserInquiryHistoryDetailAsync(GhabzinoBot.GhabzinoService.EditEndUserInquiryHistoryDetailInput ws);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICore/ElectricityBillInquiry", ReplyAction="http://tempuri.org/ICore/ElectricityBillInquiryResponse")]
         GhabzinoBot.GhabzinoService.ElectricityBillInquiryOutput ElectricityBillInquiry(GhabzinoBot.GhabzinoService.ElectricityBillInquiryInput ws);
@@ -5337,6 +5843,14 @@ namespace GhabzinoBot.GhabzinoService {
         
         public CoreClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public GhabzinoBot.GhabzinoService.EditEndUserInquiryHistoryDetailOutput EditEndUserInquiryHistoryDetail(GhabzinoBot.GhabzinoService.EditEndUserInquiryHistoryDetailInput ws) {
+            return base.Channel.EditEndUserInquiryHistoryDetail(ws);
+        }
+        
+        public System.Threading.Tasks.Task<GhabzinoBot.GhabzinoService.EditEndUserInquiryHistoryDetailOutput> EditEndUserInquiryHistoryDetailAsync(GhabzinoBot.GhabzinoService.EditEndUserInquiryHistoryDetailInput ws) {
+            return base.Channel.EditEndUserInquiryHistoryDetailAsync(ws);
         }
         
         public GhabzinoBot.GhabzinoService.ElectricityBillInquiryOutput ElectricityBillInquiry(GhabzinoBot.GhabzinoService.ElectricityBillInquiryInput ws) {

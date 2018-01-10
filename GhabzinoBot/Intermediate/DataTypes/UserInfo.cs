@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ayantech.WebService;
+﻿using Ayantech.WebService;
 
 namespace GhabzinoBot
 {
@@ -19,6 +14,8 @@ namespace GhabzinoBot
         public ElectricityBillInquiryStep ElectricityBillInquiryStep { get; set; }
         public MciMobileBillInquiryStep MciMobileBillInquiryStep { get; set; }
         public FixedLineBillInquiryStep FixedLineBillInquiryStep { get; set; }
-        public TrafficFinesInquiryStep TrafficFinesBillInquiryStep { get; set; }
+        public TrafficFinesInquiryStep TrafficFinesInquiryStep { get; set; }
+        public BillStep BillStep { get; set; }
+        public HistoryStep HistoryStep { get; set; }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Ayantech.WebService;
+using System;
 using System.Diagnostics;
 using System.Web.Http;
-using Ayantech.WebService;
 
 namespace GhabzinoBot
 {
@@ -14,8 +14,11 @@ namespace GhabzinoBot
             try
             {
                 Log.Info(Helper.JsonSerializer(update), sw.Elapsed.TotalMilliseconds, update.Id.ToString());
-                UpdateHandler updateHandler = new UpdateHandler();
-                updateHandler.Bot_OnUpdate(update);
+                var updateHandler = new UpdateHandler
+                {
+                    Update = update
+                };
+                updateHandler.Bot_OnUpdate();
                 return;
             }
             catch (Exception ex)

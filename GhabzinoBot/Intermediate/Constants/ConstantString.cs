@@ -1,22 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GhabzinoBot
+﻿namespace GhabzinoBot
 {
     static class ConstantStrings
     {
-        public const string pay = "پرداخت قبض (رفتن به صفحه پرداخت بانک)";
-        public const string payFull = "پرداخت قبض پایان دوره (رفتن به صفحه پرداخت بانک)";
-        public const string PayHalf = "پرداخت قبض میان دوره (رفتن به صفحه پرداخت بانک)";
-        public const string returnToMainMenu = "بازگشت به صفحه اصلی";
-        public const string MainMenuDescription = "لطفا برای ادامه یکی از موارد را انتخاب کنید:";
-
-        public const string start = "/start";
-
-
+        //Buttons
         public const string WaterBillInquiry = "آب";
         public const string GasBillInquiry = "گاز";
         public const string ElectricityBillInquiry = "برق";
@@ -30,13 +16,8 @@ namespace GhabzinoBot
         public const string payBill = "پرداخت قبض";
         public const string payBillHalfTerm = "پرداخت قبض میان دوره";
         public const string payBillFullTerm = "پرداخت قبض پایان دوره";
-        public const string payOnline = "اضافه کردن به لیست پرداخت آنلاین";
 
-
-        public const string requestActivationCode = "درخواست کد فعال سازی";
-        public const string requestActivationCodeAgain = "درخواست مجدد کد فعال سازی";
-
-        //Bill Inquery
+        //Bill Inquiry - Step: None
         public const string WaterBillInquiryNone = "لطفا شناسه قبض آب را وارد کنید یا به صفحه اصلی باز گردید:";
         public const string GasBillInquiryNone = "لطفا شناسه قبض گاز را وارد کنید یا به صفحه اصلی باز گردید:";
         public const string ElectricityBillInquiryNone = "لطفا شناسه قبض برق را وارد کنید یا به صفحه اصلی باز گردید:";
@@ -44,11 +25,26 @@ namespace GhabzinoBot
         public const string FixedLineBillInquiryNone = "لطفا شماره تلفن ثابت را وارد کنید یا به صفحه اصلی باز گردید:";
         public const string TrafficFinesInquiryNone = "لطفا شماره بارکد کارت ماشین را وارد کنید یا به صفحه اصلی باز گردید:";
 
-        //
-        public const string WebserviceStatusSuccess = "G00000";
+        //Bill Inquiry - Step: Inquired
+        public const string payOnline = "اضافه کردن به لیست پرداخت آنلاین";
 
+        //Other
+        public const string WebserviceStatusSuccess = "G00000";
+        public const string start = "/start";
+        public const string returnToMainMenu = "بازگشت به صفحه اصلی";
+        public const string MainMenuDescription = "لطفا برای ادامه یکی از موارد را انتخاب کنید:";
+
+        //Payment
         public const string PayInlineButton = "برای پرداخت از دکمه زیر استفاده کنید:";
         public const string PayInlineButtons = "برای پرداخت از دکمه های زیر استفاده کنید:";
+        public const string OrReturnToMainMenu = "یا به صفحه اصلی باز گردید:";
+
+        //Terrafic Fines
+        public const string Next = "بعدی";
+        public const string Previous = "قبلی";
+        public const string AddAllToPaymentList = "همه به لیست پرداخت اضافه شوند";
+        public const string AddToPaymentList = "به لیست پرداخت اضافه شود";
+        public const string RemoveFromPaymentList = "از لیست پرداخت حذف شود";
 
     }
 }

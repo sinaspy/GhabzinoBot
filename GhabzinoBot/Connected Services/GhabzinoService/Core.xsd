@@ -1,241 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://application.billingsystem.ayantech.ir/WebServices/Core.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Application" />
+  <xs:element name="EditEndUserInquiryHistoryDetail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q1:EditEndUserInquiryHistoryDetailInput" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditEndUserInquiryHistoryDetailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="EditEndUserInquiryHistoryDetailResult" nillable="true" type="q2:EditEndUserInquiryHistoryDetailOutput" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ElectricityBillInquiry">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q1:ElectricityBillInquiryInput" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q3:ElectricityBillInquiryInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ElectricityBillInquiryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ElectricityBillInquiryResult" nillable="true" type="q2:ElectricityBillInquiryOutput" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ElectricityBillInquiryResult" nillable="true" type="q4:ElectricityBillInquiryOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="FixedLineBillInquiry">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q3:FixedLineBillInquiryInput" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q5:FixedLineBillInquiryInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="FixedLineBillInquiryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="FixedLineBillInquiryResult" nillable="true" type="q4:FixedLineBillInquiryOutput" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="FixedLineBillInquiryResult" nillable="true" type="q6:FixedLineBillInquiryOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GasBillInquiry">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q5:GasBillInquiryInput" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q7:GasBillInquiryInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GasBillInquiryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="GasBillInquiryResult" nillable="true" type="q6:GasBillInquiryOutput" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="GasBillInquiryResult" nillable="true" type="q8:GasBillInquiryOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetEndUserInquiryHistoryDetail">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q7:GetEndUserInquiryHistoryDetailInput" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q9:GetEndUserInquiryHistoryDetailInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetEndUserInquiryHistoryDetailResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="GetEndUserInquiryHistoryDetailResult" nillable="true" type="q8:GetEndUserInquiryHistoryDetailOutput" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="GetEndUserInquiryHistoryDetailResult" nillable="true" type="q10:GetEndUserInquiryHistoryDetailOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetEndUserPaymentHistory">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q9:GetEndUserPaymentHistoryInput" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q11:GetEndUserPaymentHistoryInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetEndUserPaymentHistoryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="GetEndUserPaymentHistoryResult" nillable="true" type="q10:GetEndUserPaymentHistoryOutput" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="GetEndUserPaymentHistoryResult" nillable="true" type="q12:GetEndUserPaymentHistoryOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetEndUserPaymentHistoryDetail">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q11:GetEndUserPaymentHistoryDetailInput" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q13:GetEndUserPaymentHistoryDetailInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetEndUserPaymentHistoryDetailResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="GetEndUserPaymentHistoryDetailResult" nillable="true" type="q12:GetEndUserPaymentHistoryDetailOutput" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="GetEndUserPaymentHistoryDetailResult" nillable="true" type="q14:GetEndUserPaymentHistoryDetailOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Login">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q13:LoginInput" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q15:LoginInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="LoginResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="LoginResult" nillable="true" type="q14:LoginOutput" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="LoginResult" nillable="true" type="q16:LoginOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="MCIMobileBillInquiry">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q15:MCIMobileBillInquiryInput" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q17:MCIMobileBillInquiryInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="MCIMobileBillInquiryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="MCIMobileBillInquiryResult" nillable="true" type="q16:MCIMobileBillInquiryOutput" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="MCIMobileBillInquiryResult" nillable="true" type="q18:MCIMobileBillInquiryOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="PaymentInquiry">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q17:PaymentInquiryInput" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q19:PaymentInquiryInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="PaymentInquiryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="PaymentInquiryResult" nillable="true" type="q18:PaymentInquiryOutput" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="PaymentInquiryResult" nillable="true" type="q20:PaymentInquiryOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RemoveEndUserInquiryHistoryDetail">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q19:RemoveEndUserInquiryHistoryDetailInput" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q21:RemoveEndUserInquiryHistoryDetailInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RemoveEndUserInquiryHistoryDetailResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="RemoveEndUserInquiryHistoryDetailResult" nillable="true" type="q20:RemoveEndUserInquiryHistoryDetailOutput" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="RemoveEndUserInquiryHistoryDetailResult" nillable="true" type="q22:RemoveEndUserInquiryHistoryDetailOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReportEndUserComment">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q21:ReportEndUserCommentInput" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q23:ReportEndUserCommentInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReportEndUserCommentResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ReportEndUserCommentResult" nillable="true" type="q22:ReportEndUserCommentOutput" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ReportEndUserCommentResult" nillable="true" type="q24:ReportEndUserCommentOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReportEndUserStatus">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q23:ReportEndUserStatusInput" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q25:ReportEndUserStatusInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReportEndUserStatusResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ReportEndUserStatusResult" nillable="true" type="q24:ReportEndUserStatusOutput" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ReportEndUserStatusResult" nillable="true" type="q26:ReportEndUserStatusOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReportNewPayment">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q25:ReportNewPaymentInput" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q27:ReportNewPaymentInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReportNewPaymentResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ReportNewPaymentResult" nillable="true" type="q26:ReportNewPaymentOutput" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ReportNewPaymentResult" nillable="true" type="q28:ReportNewPaymentOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReportPaymentInquiry">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q27:ReportPaymentInquiryInput" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q29:ReportPaymentInquiryInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ReportPaymentInquiryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ReportPaymentInquiryResult" nillable="true" type="q28:ReportPaymentInquiryOutput" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ReportPaymentInquiryResult" nillable="true" type="q30:ReportPaymentInquiryOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RequestActivationCode">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q29:RequestActivationCodeInput" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q31:RequestActivationCodeInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RequestActivationCodeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="RequestActivationCodeResult" nillable="true" type="q30:RequestActivationCodeOutput" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="RequestActivationCodeResult" nillable="true" type="q32:RequestActivationCodeOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="TrafficFinesInquiry">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q31:TrafficFinesInquiryInput" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q33:TrafficFinesInquiryInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="TrafficFinesInquiryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="TrafficFinesInquiryResult" nillable="true" type="q32:TrafficFinesInquiryOutput" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="TrafficFinesInquiryResult" nillable="true" type="q34:TrafficFinesInquiryOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="WaterBillInquiry">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q33:WaterBillInquiryInput" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="ws" nillable="true" type="q35:WaterBillInquiryInput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="WaterBillInquiryResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="WaterBillInquiryResult" nillable="true" type="q34:WaterBillInquiryOutput" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Application" minOccurs="0" name="WaterBillInquiryResult" nillable="true" type="q36:WaterBillInquiryOutput" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

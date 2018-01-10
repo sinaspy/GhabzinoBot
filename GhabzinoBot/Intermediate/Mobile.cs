@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Ayantech.WebService;
+using PhoneNumbers;
+using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using Ayantech.WebService;
-using PhoneNumbers;
 
 namespace GhabzinoBot
 {
@@ -10,7 +10,6 @@ namespace GhabzinoBot
     {
         private string _internationalNumber;
         public string Number { set; get; }
-        public Reason Reason { set; get; }
         public bool NumberContentIsValid { set; get; }
         public string InternationalNumber { set { _internationalNumber = value; } get { return _internationalNumber ?? (_internationalNumber = InitiateInternationalNumber()); } }
 
@@ -28,12 +27,10 @@ namespace GhabzinoBot
                 if (!len.IsMatch(Number))
                 {
                     NumberContentIsValid = false;
-                    Reason = new Reason("GB0020");
                 }
                 else if (!digit.IsMatch(Number))
                 {
                     NumberContentIsValid = false;
-                    Reason = new Reason("GB0020");
                 }
                 else
                 {
@@ -42,12 +39,10 @@ namespace GhabzinoBot
                     if (phoneUtil.IsValidNumber(mobile) != true)
                     {
                         NumberContentIsValid = false;
-                        Reason = new Reason("GB0020");
                     }
                     else if (phoneUtil.GetNumberType(mobile) != PhoneNumberType.MOBILE)
                     {
                         NumberContentIsValid = false;
-                        Reason = new Reason("GB0020");
                     }
                     else
                         NumberContentIsValid = true;
@@ -58,7 +53,6 @@ namespace GhabzinoBot
             }
             catch (Exception ex)
             {
-                Reason = ProjectValues.ReasonStatusError;
                 Log.Fatal(ex.ToString(), sw.Elapsed.TotalMilliseconds);
                 return false;
             }

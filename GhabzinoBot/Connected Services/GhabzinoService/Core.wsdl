@@ -32,6 +32,12 @@
       <xsd:import schemaLocation="http://application.billingsystem.ayantech.ir/WebServices/Core.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Application" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="ICore_EditEndUserInquiryHistoryDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditEndUserInquiryHistoryDetail" />
+  </wsdl:message>
+  <wsdl:message name="ICore_EditEndUserInquiryHistoryDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditEndUserInquiryHistoryDetailResponse" />
+  </wsdl:message>
   <wsdl:message name="ICore_ElectricityBillInquiry_InputMessage">
     <wsdl:part name="parameters" element="tns:ElectricityBillInquiry" />
   </wsdl:message>
@@ -135,6 +141,10 @@
     <wsdl:part name="parameters" element="tns:WaterBillInquiryResponse" />
   </wsdl:message>
   <wsdl:portType name="ICore">
+    <wsdl:operation name="EditEndUserInquiryHistoryDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/EditEndUserInquiryHistoryDetail" message="tns:ICore_EditEndUserInquiryHistoryDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/EditEndUserInquiryHistoryDetailResponse" message="tns:ICore_EditEndUserInquiryHistoryDetail_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ElectricityBillInquiry">
       <wsdl:input wsaw:Action="http://tempuri.org/ICore/ElectricityBillInquiry" message="tns:ICore_ElectricityBillInquiry_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICore/ElectricityBillInquiryResponse" message="tns:ICore_ElectricityBillInquiry_OutputMessage" />
@@ -206,6 +216,15 @@
   </wsdl:portType>
   <wsdl:binding name="Soap" type="tns:ICore">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EditEndUserInquiryHistoryDetail">
+      <soap:operation soapAction="http://tempuri.org/ICore/EditEndUserInquiryHistoryDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ElectricityBillInquiry">
       <soap:operation soapAction="http://tempuri.org/ICore/ElectricityBillInquiry" style="document" />
       <wsdl:input>
@@ -363,6 +382,15 @@
   <wsdl:binding name="SecureSoap" type="tns:ICore">
     <wsp:PolicyReference URI="#SecureSoap_policy" />
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EditEndUserInquiryHistoryDetail">
+      <soap:operation soapAction="http://tempuri.org/ICore/EditEndUserInquiryHistoryDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ElectricityBillInquiry">
       <soap:operation soapAction="http://tempuri.org/ICore/ElectricityBillInquiry" style="document" />
       <wsdl:input>

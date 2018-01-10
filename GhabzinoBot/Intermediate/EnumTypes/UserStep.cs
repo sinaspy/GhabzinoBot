@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GhabzinoBot
+﻿namespace GhabzinoBot
 {
     public enum WaterBillInquiryStep//1000
     {
         None = 1000,//default
-        Inquiring=1100,
-        Inqueried=1200,
+        Inquiring = 1100,
+        Inqueried = 1200,
     }
     public enum GasBillInquiryStep//2000
     {
@@ -41,5 +35,17 @@ namespace GhabzinoBot
         None = 6000,//default
         Inquiring = 6100,
         Inqueried = 6200,
+    }
+    public enum BillStep//7000
+    {
+        None = 7000,//default
+        PaymentId = 7100,
+        Inquiring = 7200,
+        Inqueried = 7300,
+    }
+    public enum HistoryStep//8000
+    {
+        None = 8000,//default
+        FieldDetermined = 8100,
     }
 }

@@ -236,115 +236,29 @@
     <Content Include="Connected Services\GhabzinoService\GhabzinoBot.GhabzinoService.WaterBillInquiryOutput.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\GhabzinoService\GhabzinoBot.GhabzinoService.EditEndUserInquiryHistoryDetailOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\GhabzinoService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\AccessObject.cs">
-      <Link>Intermediate\Public\AccessObject.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\AccessRole.cs">
-      <Link>Intermediate\Public\AccessRole.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\AuthenticationToken.cs">
-      <Link>Intermediate\Public\AuthenticationToken.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\Business.cs">
-      <Link>Intermediate\Public\Business.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\Credential.cs">
-      <Link>Intermediate\Public\Credential.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\Shared\WebService\Intermediate\DataBaseConfigure.cs">
       <Link>Intermediate\Public\DataBaseConfigure.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\DataBaseMessage.cs">
-      <Link>Intermediate\Public\DataBaseMessage.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\Identity.cs">
-      <Link>Intermediate\Public\Identity.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\InternetProtocol.cs">
-      <Link>Intermediate\Public\InternetProtocol.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\JwtHeader.cs">
-      <Link>Intermediate\Public\JwtHeader.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\JwtPayload.cs">
-      <Link>Intermediate\Public\JwtPayload.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\JwtToken.cs">
-      <Link>Intermediate\Public\JwtToken.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\JwtVerifySignature.cs">
-      <Link>Intermediate\Public\JwtVerifySignature.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\MessageValue.cs">
-      <Link>Intermediate\Public\MessageValue.cs</Link>
     </Compile>
     <Compile Include="..\..\..\Shared\WebService\Intermediate\MonitorValue.cs">
       <Link>Intermediate\Public\MonitorValue.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\Password.cs">
-      <Link>Intermediate\Public\Password.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\Project.cs">
-      <Link>Intermediate\Public\Project.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\Shared\WebService\Intermediate\QueryResult.cs">
       <Link>Intermediate\Public\QueryResult.cs</Link>
     </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\Reason.cs">
-      <Link>Intermediate\Public\Reason.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\Session.cs">
-      <Link>Intermediate\Public\Session.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\SystemErrorDetail.cs">
-      <Link>Intermediate\Public\SystemErrorDetail.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\SystemMonitoring.cs">
-      <Link>Intermediate\Public\SystemMonitoring.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\SystemSummaryDetail.cs">
-      <Link>Intermediate\Public\SystemSummaryDetail.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\User.cs">
-      <Link>Intermediate\Public\User.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\Validation.cs">
-      <Link>Intermediate\Public\Validation.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Intermediate\WebServiceResult.cs">
-      <Link>Intermediate\Public\WebServiceResult.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Main\BaseDataBase.cs">
-      <Link>Main\Tools\BaseDataBase.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Main\BaseHelper.cs">
-      <Link>Main\Tools\BaseHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Main\BaseProjectValues.cs">
-      <Link>Main\Tools\BaseProjectValues.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Main\BaseValidator.cs">
-      <Link>Main\Tools\BaseValidator.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Main\JsonWebToken.cs">
-      <Link>Main\Tools\JsonWebToken.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Main\Log.cs">
-      <Link>Main\Tools\Log.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\Shared\WebService\Main\Profile.cs">
-      <Link>Main\Tools\Profile.cs</Link>
-    </Compile>
     <Compile Include="AppStart\SwaggerConfig.cs" />
-    <Compile Include="AppStart\SnakeCaseNamingAttribute.cs" />
     <Compile Include="AppStart\WebApiConfig.cs" />
     <Compile Include="Connected Services\GhabzinoService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -354,8 +268,8 @@
     <Compile Include="Intermediate\Mobile.cs" />
     <Compile Include="Main\DataBase.cs" />
     <Compile Include="Main\Helper.cs" />
+    <Compile Include="Main\Log.cs" />
     <Compile Include="Main\ProjectValues.cs" />
-    <Compile Include="Main\Validator.cs" />
     <Compile Include="Intermediate\Constants\ConstantString.cs" />
     <Compile Include="Intermediate\DataHandler.cs" />
     <Compile Include="Intermediate\DataTypes\UserInfo.cs" />
@@ -364,9 +278,8 @@
     <Compile Include="Intermediate\EnumTypes\UserState.cs" />
     <Compile Include="Intermediate\EnumTypes\UserStep.cs" />
     <Compile Include="Intermediate\GhabzinoCoreApi.cs" />
-    <Compile Include="Main\TelegramComponent.cs" />
+    <Compile Include="Intermediate\Telegram\TelegramApi.cs" />
     <Compile Include="Intermediate\UpdateHandler.cs" />
-    <Compile Include="WebServices\Core.cs" />
     <Compile Include="WebServices\Webhook.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -389,6 +302,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

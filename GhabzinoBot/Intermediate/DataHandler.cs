@@ -1,5 +1,6 @@
 ﻿using GhabzinoBot.GhabzinoService;
 using Newtonsoft.Json;
+using System;
 using System.IO;
 
 namespace GhabzinoBot
@@ -9,8 +10,31 @@ namespace GhabzinoBot
         public class PaymentStructure
         {
             public string StrToken { get; set; }
-            //public bool[] ValidForPayment { get; set; }
-            public ReportNewPaymentInputParams[] Rnpip { get; set; }
+            public ReportNewPaymentInputParams[] RnpipArray { get; set; }
+        }
+        public class SelectedBillsStructure
+        {
+            public string StrToken { get; set; }
+            public int[] SelectedBills { get; set; }
+        }
+        public class TerraficFinesStructure
+        {
+            public string StrToken { get; set; }
+            public TerraficFines[] TerraficFinesArray { get; set; }
+        }
+        public class TerraficFines
+        {
+            public string City { get; set; }
+            public string DateTime { get; set; }
+            public string Delivery { get; set; }
+            public string Location { get; set; }
+            public string Type { get; set; }
+            public long Amount { get; set; }
+        }
+        public class TerraficFinesPageStructure
+        {
+            public string StrToken { get; set; }
+            public int TerraficFinesPage { get; set; }
         }
 
         public static UserInfo ReadUserInfo(int userID)
@@ -19,7 +43,7 @@ namespace GhabzinoBot
 
             var fileContent = File.ReadAllLines(@"C:\Users\Resurrection\Desktop\userinfo.txt");
 
-            UserInfo LastUserRecord = new UserInfo() { /*UserState = UserState.Registered,*/ UserID = userID };//TEMP 
+            UserInfo LastUserRecord = new UserInfo() { UserID = userID };
 
             foreach (var record in fileContent)
             {
@@ -39,68 +63,133 @@ namespace GhabzinoBot
 
             return true;
         }
-        public static ReportNewPaymentInputParams[] ReadPaymentInfo(string token/*, out bool[] validForPayment*/)
+        public static ReportNewPaymentInputParams[] ReadPaymentInfo(string token)
         {
             using (File.AppendText(@"C:\Users\Resurrection\Desktop\payment.txt")) ;
 
             var fileContent = File.ReadAllLines(@"C:\Users\Resurrection\Desktop\payment.txt");
 
             ReportNewPaymentInputParams[] LastPaymentRecord = null;
-            //validForPayment = null;
 
             foreach (var record in fileContent)
             {
                 var currentRecord = JsonConvert.DeserializeObject<PaymentStructure>(record);
                 if (currentRecord.StrToken == token)
                 {
-                    LastPaymentRecord = currentRecord.Rnpip;
-                    //validForPayment = new bool[currentRecord.ValidForPayment.Length];
-                    //for (int i = 0; i < currentRecord.ValidForPayment.Length; i++)
-                    //{
-                    //    validForPayment[i] = currentRecord.ValidForPayment[i];
-                    //}
+                    LastPaymentRecord = currentRecord.RnpipArray;
+
                 }
             }
 
             return LastPaymentRecord;
         }
-        public static bool SavePaymentInfo(string token/*, bool[] validForPayment*/, params ReportNewPaymentInputParams[] payments)
+        public static bool SavePaymentInfo(string token, params ReportNewPaymentInputParams[] payments)
         {
-            var str = JsonConvert.SerializeObject(new PaymentStructure { StrToken = token/*, ValidForPayment = validForPayment*/, Rnpip = payments });
+            var str = JsonConvert.SerializeObject(new PaymentStructure { StrToken = token, RnpipArray = payments });
             File.AppendAllLines(@"C:\Users\Resurrection\Desktop\payment.txt", new string[] { str });
 
             return true;
         }
-        //public static ReportNewPaymentInputParams[] ReadAndRemovePaymentInfo(string token)
-        //{
-        //    using (File.AppendText(@"C:\Users\Resurrection\Desktop\payment.txt")) ;
 
-        //    var fileContent = File.ReadAllLines(@"C:\Users\Resurrection\Desktop\payment.txt");
 
-        //    ReportNewPaymentInputParams[] LastPaymentRecord = null;
+        public static TerraficFines[] ReadTerraficFinesInfo(string token, int? recordNumber = null)
+        {
+            using (File.AppendText(@"C:\Users\Resurrection\Desktop\terrafic.txt")) ;
 
-        //    for (int i = 0; i < fileContent.Length; i++)
-        //    {
-        //        var record = fileContent[i];
-        //        var currentRecord = JsonConvert.DeserializeObject<PaymentStructure>(record);
-        //        if (currentRecord.StrToken == token && currentRecord.ValidForPayment)
-        //        {
-        //            LastPaymentRecord = currentRecord.Rnpip;
-        //            File.Delete(@"C:\Users\Resurrection\Desktop\payment.txt");
-        //            for (int j = 0; j < fileContent.Length - 1; j++)
-        //            {
-        //                if (j == i)
-        //                {
-        //                    i++;
-        //                }
-        //                File.AppendAllLines(@"C:\Users\Resurrection\Desktop\payment.txt", new string[] { fileContent[i] });
-        //            }
-        //            break;
-        //        }
-        //    }
+            var fileContent = File.ReadAllLines(@"C:\Users\Resurrection\Desktop\terrafic.txt");
 
-        //    return LastPaymentRecord;
-        //}
+            TerraficFines[] LastTerraficFinesRecord = null;
+
+            foreach (var record in fileContent)
+            {
+                var currentRecord = JsonConvert.DeserializeObject<TerraficFinesStructure>(record);
+                if (currentRecord.StrToken == token)
+                {
+                    LastTerraficFinesRecord = currentRecord.TerraficFinesArray;
+                }
+            }
+
+            if (recordNumber != null)
+            {
+                return new TerraficFines[] { LastTerraficFinesRecord[Convert.ToInt32(recordNumber)] };
+            }
+            else
+            {
+                var selectedBills = ReadSelectedBillsInfo(token);
+                var temp = new TerraficFines[selectedBills.Length];
+                for (int i = 0; i < selectedBills.Length; i++)
+                {
+                    temp[i] = LastTerraficFinesRecord[selectedBills[i]];
+                }
+                LastTerraficFinesRecord = temp;
+            }
+
+            return LastTerraficFinesRecord;
+        }
+        public static bool SaveTerraficFinesInfo(string token, params TerraficFines[] terraficFinesDetails)
+        {
+            var str = JsonConvert.SerializeObject(new TerraficFinesStructure { StrToken = token, TerraficFinesArray = terraficFinesDetails });
+            File.AppendAllLines(@"C:\Users\Resurrection\Desktop\terrafic.txt", new string[] { str });
+
+            return true;
+        }
+
+
+        public static int[] ReadSelectedBillsInfo(string token)
+        {
+            using (File.AppendText(@"C:\Users\Resurrection\Desktop\terrafic.txt")) ;
+
+            var fileContent = File.ReadAllLines(@"C:\Users\Resurrection\Desktop\terrafic.txt");
+
+            int[] LastSelectedBillsRecord = null;
+
+            foreach (var record in fileContent)
+            {
+                var currentRecord = JsonConvert.DeserializeObject<SelectedBillsStructure>(record);
+                if (currentRecord.StrToken == token)
+                {
+                    LastSelectedBillsRecord = currentRecord.SelectedBills;
+                }
+            }
+
+            return LastSelectedBillsRecord;
+        }
+        public static bool SaveSelectedBillsInfo(string token, params int[] selectedBills)
+        {
+            var str = JsonConvert.SerializeObject(new SelectedBillsStructure { StrToken = token, SelectedBills = selectedBills });
+            File.AppendAllLines(@"C:\Users\Resurrection\Desktop\terrafic.txt", new string[] { str });
+
+            return true;
+        }
+
+        public static int ReadTerraficFinesPage(string token)
+        {
+            using (File.AppendText(@"C:\Users\Resurrection\Desktop\TerraficFinePage.txt")) ;
+
+            var fileContent = File.ReadAllLines(@"C:\Users\Resurrection\Desktop\TerraficFinePage.txt");
+
+            int LastPageRecord = 0;
+
+            foreach (var record in fileContent)
+            {
+                var currentRecord = JsonConvert.DeserializeObject<TerraficFinesPageStructure>(record);
+                if (currentRecord.StrToken == token)
+                {
+                    LastPageRecord = currentRecord.TerraficFinesPage;
+                }
+            }
+
+            return LastPageRecord;
+        }
+        public static bool SaveTerraficFinesPage(string token, int page)
+        {
+            var str = JsonConvert.SerializeObject(new TerraficFinesPageStructure { StrToken = token, TerraficFinesPage = page });
+            File.AppendAllLines(@"C:\Users\Resurrection\Desktop\TerraficFinePage.txt", new string[] { str });
+
+            return true;
+        }
+
+
         public static bool Log(object record)
         {
             var str = JsonConvert.SerializeObject(record);
