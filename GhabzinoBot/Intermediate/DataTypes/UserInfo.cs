@@ -4,7 +4,7 @@ namespace GhabzinoBot
 {
     public class UserInfo
     {
-        public int UserID { get; set; }
+        public long UserId { get; set; }
         public string Mobile { get; set; }
         public string Token { get; set; } = ProjectValues.PublicToken;
         public UserState UserState { get; set; }

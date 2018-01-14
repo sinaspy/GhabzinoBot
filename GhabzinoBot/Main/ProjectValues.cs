@@ -11,6 +11,8 @@ namespace Ayantech.WebService
 {
     public static class ProjectValues
     {
+        //Develop and Test
+        public static bool UseLiveDatabase { get; private set; } = true;
         //Base ProjectValues
         public static string CryptographyKey { private set; get; }
         public static DataBaseConfigure DataBaseConfigure { private set; get; }
@@ -34,39 +36,39 @@ namespace Ayantech.WebService
         public static TelegramApi TelegramApi { get; private set; }
         //String ProjectValues (Messages, Buttons, Inline Buttons, UserInputs,...)
         //  //Buttons
-        public static string WaterBillInquiry { get; set; }
-        public static string GasBillInquiry { get; set; }
-        public static string ElectricityBillInquiry { get; set; }
-        public static string TrafficFinesInquery { get; set; }
-        public static string MciMobileBillInquiry { get; set; }
+        public static string WaterBillInquiry { get; private set; }
+        public static string GasBillInquiry { get; private set; }
+        public static string ElectricityBillInquiry { get; private set; }
+        public static string TrafficFinesInquery { get; private set; }
+        public static string MciMobileBillInquiry { get; private set; }
         public static string FixedLineBillInquiry { get; set; }
-        public static string All { get; set; }
-        public static string paymensts { get; set; }
-        public static string history { get; set; }
+        public static string All { get; private set; }
+        public static string paymensts { get; private set; }
+        public static string history { get; private set; }
         public static string bill { get; set; }
-        public static string payBill { get; set; }
-        public static string payBills { get; set; }
-        public static string payBillHalfTerm { get; set; }
-        public static string payBillFullTerm { get; set; }
+        public static string payBill { get; private set; }
+        public static string payBills { get; private set; }
+        public static string payBillHalfTerm { get; private set; }
+        public static string payBillFullTerm { get; private set; }
         //  //Bill Inquiry - Step: None
-        public static string WaterBillInquiryNone { get; set; }
-        public static string GasBillInquiryNone { get; set; }
-        public static string ElectricityBillInquiryNone { get; set; }
-        public static string MciMobileBillInquiryNone { get; set; }
-        public static string FixedLineBillInquiryNone { get; set; }
-        public static string TrafficFinesInquiryNone { get; set; }
+        public static string WaterBillInquiryNone { get; private set; }
+        public static string GasBillInquiryNone { get; private set; }
+        public static string ElectricityBillInquiryNone { get; private set; }
+        public static string MciMobileBillInquiryNone { get; private set; }
+        public static string FixedLineBillInquiryNone { get; private set; }
+        public static string TrafficFinesInquiryNone { get; private set; }
         //  //Bill Inquiry - Step: Inquired
-        public static string payOnline { get; set; }
-        public static string ChooseToPayOnline { get; set; }
+        public static string payOnline { get; private set; }
+        public static string ChooseToPayOnline { get; private set; }
         //  //Other
-        public static string WebserviceStatusSuccess { get; set; }
-        public static string start { get; set; }
-        public static string returnToMainMenu { get; set; }
-        public static string MainMenuDescription { get; set; }
+        public static string WebserviceStatusSuccess { get; private set; }
+        public static string start { get; private set; }
+        public static string returnToMainMenu { get; private set; }
+        public static string MainMenuDescription { get; private set; }
         //  //Payment
-        public static string PayInlineButton { get; set; }
-        public static string PayInlineButtons { get; set; }
-        public static string OrReturnToMainMenu { get; set; }
+        public static string PayInlineButton { get; private set; }
+        public static string PayInlineButtons { get; private set; }
+        public static string OrReturnToMainMenu { get; private set; }
         ////Bot Keyboards ProjectValues
         //private static KeyboardButton _btnReturnToMainMenu { get; set; }
         //private static KeyboardButton _btnGoToPaymentPage { get; set; }
@@ -163,10 +165,16 @@ namespace Ayantech.WebService
             StoredProceduresBlockList = WebConfigurationManager.AppSettings["StoredProceduresBlockList"].Split(',');
             return true;
         }
-
         public static bool InitOtherObjects()
         {
-            var status = InitOtherFixedValues();
+            //Order of execution is necessary
+            var status = InitStrings();
+            if (status == false)
+            {
+                return false;
+            }
+
+            status = InitOtherFixedValues();
             if (status == false)
             {
                 return false;
@@ -177,9 +185,9 @@ namespace Ayantech.WebService
         public static bool InitOtherFixedValues()
         {
             PublicToken = WebConfigurationManager.AppSettings["PublicToken"];
-            Bot = new TelegramBotClient(BotToken);
             BotToken = WebConfigurationManager.AppSettings["BotToken"];
             EndpointConfigurationName = WebConfigurationManager.AppSettings["EndpointConfigurationName"];
+            Bot = new TelegramBotClient(BotToken);
             ApplicationType = "TelegramBot";
             ApplicationVersion = "1.0.0";
             TelegramApi = new TelegramApi();
@@ -224,6 +232,7 @@ namespace Ayantech.WebService
             MainMenuDescription = "لطفا برای ادامه یکی از موارد را انتخاب کنید:";
             return true;
         }
+
         //public static bool InitBotButtons()
         //{
         //            //Bot Keyboards ProjectValues

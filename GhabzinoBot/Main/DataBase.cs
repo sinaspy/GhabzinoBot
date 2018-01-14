@@ -106,7 +106,7 @@ namespace Ayantech.WebService
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@waterBillInquiryStep", Value = waterBillInquiryStep });
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@gasBillInquiryStep", Value = gasBillInquiryStep });
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@electricityBillInquiryStep", Value = electricityBillInquiryStep });
-            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@mciMobileBillInquiryStep", Value = mciMobileBillInquiryStep });
+            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@mciMobileBillInquiry", Value = mciMobileBillInquiryStep });
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@fixedLineInquiry", Value = fixedLineInquiry });
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@trafficFinesInquiry", Value = trafficFinesInquiry });
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@payBill", Value = payBill });

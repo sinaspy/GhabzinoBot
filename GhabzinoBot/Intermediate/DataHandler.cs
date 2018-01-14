@@ -1,6 +1,8 @@
-﻿using GhabzinoBot.GhabzinoService;
+﻿using Ayantech.WebService;
+using GhabzinoBot.GhabzinoService;
 using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace GhabzinoBot
@@ -37,31 +39,77 @@ namespace GhabzinoBot
             public int TerraficFinesPage { get; set; }
         }
 
-        public static UserInfo ReadUserInfo(int userID)
+        public static UserInfo ReadUserInfo(long userId)
         {
-            using (File.AppendText(@"C:\Users\Resurrection\Desktop\userinfo.txt")) ;
+            var sw = Stopwatch.StartNew();
 
-            var fileContent = File.ReadAllLines(@"C:\Users\Resurrection\Desktop\userinfo.txt");
-
-            UserInfo LastUserRecord = new UserInfo() { UserID = userID };
-
-            foreach (var record in fileContent)
+            if (ProjectValues.UseLiveDatabase)
             {
-                var userRecord = JsonConvert.DeserializeObject<UserInfo>(record);
-                if (userID == userRecord.UserID)
+                var result = DataBase.GetTelegramUserInfo(userId);
+                if (result.HasError)
                 {
-                    LastUserRecord = userRecord;
+                    Ayantech.WebService.Log.Error("DB: SP Has Error", sw.Elapsed.TotalMilliseconds);
+                    return null;
                 }
-            }
+                else if (result?.DataSet?.Tables[0].Rows.Count == 0)
+                {
+                    Ayantech.WebService.Log.Info("DB: No result returned", sw.Elapsed.TotalMilliseconds);
+                    return new UserInfo { UserId = userId };
+                }
 
-            return LastUserRecord;
+                var dbArray = result.DataSet.Tables[0].Rows[0].ItemArray;
+                Ayantech.WebService.Log.Trace(JsonConvert.SerializeObject(dbArray), sw.Elapsed.TotalMilliseconds);
+                var dbInfo = new UserInfo { UserId = (long)dbArray[0], Mobile = dbArray[1].ToString(), Token = dbArray[2].ToString(), UserState = (UserState)dbArray[3], UserField = (UserField)dbArray[4], WaterBillInquiryStep = (WaterBillInquiryStep)dbArray[5], GasBillInquiryStep = (GasBillInquiryStep)dbArray[6], ElectricityBillInquiryStep = (ElectricityBillInquiryStep)dbArray[7], MciMobileBillInquiryStep = (MciMobileBillInquiryStep)dbArray[8], FixedLineBillInquiryStep = (FixedLineBillInquiryStep)dbArray[9], TrafficFinesInquiryStep = (TrafficFinesInquiryStep)dbArray[10], BillStep = (BillStep)dbArray[11], HistoryStep = (HistoryStep)dbArray[12] };
+
+                return dbInfo;
+            }
+            else
+            {
+                using (File.AppendText(@"C:\Users\Resurrection\Desktop\userinfo.txt")) ;
+
+                var fileContent = File.ReadAllLines(@"C:\Users\Resurrection\Desktop\userinfo.txt");
+
+                UserInfo LastUserRecord = new UserInfo() { UserId = userId };
+
+                foreach (var record in fileContent)
+                {
+                    var userRecord = JsonConvert.DeserializeObject<UserInfo>(record);
+                    if (userId == userRecord.UserId)
+                    {
+                        LastUserRecord = userRecord;
+                    }
+                }
+
+                return LastUserRecord;
+            }
         }
         public static bool SaveUserInfo(UserInfo userInfo)
         {
-            var user = JsonConvert.SerializeObject(userInfo);
-            File.AppendAllLines(@"C:\Users\Resurrection\Desktop\userinfo.txt", new string[] { user });
+            var sw = Stopwatch.StartNew();
 
-            return true;
+            if (ProjectValues.UseLiveDatabase)
+            {
+                var result = DataBase.SetTelegramUserInfo(userInfo.UserId, string.IsNullOrEmpty(userInfo.Mobile) ? "" : userInfo.Mobile, userInfo.Token, (int)userInfo.UserState, (int)userInfo.UserField, (int)userInfo.WaterBillInquiryStep, (int)userInfo.GasBillInquiryStep, (int)userInfo.ElectricityBillInquiryStep, (int)userInfo.MciMobileBillInquiryStep, (int)userInfo.FixedLineBillInquiryStep, (int)userInfo.TrafficFinesInquiryStep, (int)userInfo.BillStep, (int)userInfo.HistoryStep);
+                if (result.HasError)
+                {
+                    Ayantech.WebService.Log.Error("DB: SP Has Error", sw.Elapsed.TotalMilliseconds);
+                    return false;
+                }
+                else if (result?.DataSet?.Tables[0].Rows.Count == 0)
+                {
+                    Ayantech.WebService.Log.Info("DB: No result returned", sw.Elapsed.TotalMilliseconds);
+                    return false;
+                }
+
+                return true;
+            }
+            else
+            {
+                var user = JsonConvert.SerializeObject(userInfo);
+                File.AppendAllLines(@"C:\Users\Resurrection\Desktop\userinfo.txt", new string[] { user });
+
+                return true;
+            }
         }
         public static ReportNewPaymentInputParams[] ReadPaymentInfo(string token)
         {
