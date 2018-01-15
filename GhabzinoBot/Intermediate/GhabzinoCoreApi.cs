@@ -1,6 +1,6 @@
 ﻿using Ayantech.WebService;
 using GhabzinoBot.GhabzinoService;
-using Newtonsoft.Json;
+using System;
 
 namespace GhabzinoBot
 {
@@ -18,6 +18,11 @@ namespace GhabzinoBot
                 });
             client.Close();
 
+            if (string.Equals(webserviceResult.Status.Code, "G00002", StringComparison.OrdinalIgnoreCase))
+            {
+                DataHandler.SaveUserInfo(new UserInfo { UserState = UserState.NotRegistered });
+            }
+
             return webserviceResult;
         }
         public static GasBillInquiryOutput GasHandler(string token, string participateCode)
@@ -31,6 +36,11 @@ namespace GhabzinoBot
                     Parameters = new GasBillInquiryInputParams() { ParticipateCode = participateCode }
                 });
             client.Close();
+
+            if (string.Equals(webserviceResult.Status.Code, "G00002", StringComparison.OrdinalIgnoreCase))
+            {
+                DataHandler.SaveUserInfo(new UserInfo { UserState = UserState.NotRegistered });
+            }
 
             return webserviceResult;
         }
@@ -46,6 +56,11 @@ namespace GhabzinoBot
                 });
             client.Close();
 
+            if (string.Equals(webserviceResult.Status.Code, "G00002", StringComparison.OrdinalIgnoreCase))
+            {
+                DataHandler.SaveUserInfo(new UserInfo { UserState = UserState.NotRegistered });
+            }
+
             return webserviceResult;
         }
         public static MCIMobileBillInquiryOutput MciMobileHandler(string token, string mobileNumber)
@@ -59,6 +74,11 @@ namespace GhabzinoBot
                     Parameters = new MCIMobileBillInquiryInputParams() { MobileNumber = mobileNumber }
                 });
             client.Close();
+
+            if (string.Equals(webserviceResult.Status.Code, "G00002", StringComparison.OrdinalIgnoreCase))
+            {
+                DataHandler.SaveUserInfo(new UserInfo { UserState = UserState.NotRegistered });
+            }
 
             return webserviceResult;
         }
@@ -74,6 +94,11 @@ namespace GhabzinoBot
                 });
             client.Close();
 
+            if (string.Equals(webserviceResult.Status.Code, "G00002", StringComparison.OrdinalIgnoreCase))
+            {
+                DataHandler.SaveUserInfo(new UserInfo { UserState = UserState.NotRegistered });
+            }
+
             return webserviceResult;
         }
         public static TrafficFinesInquiryOutput TrafficFinesHandler(string token, string barcode)
@@ -88,6 +113,11 @@ namespace GhabzinoBot
                 });
             client.Close();
 
+            if (string.Equals(webserviceResult.Status.Code, "G00002", StringComparison.OrdinalIgnoreCase))
+            {
+                DataHandler.SaveUserInfo(new UserInfo { UserState = UserState.NotRegistered });
+            }
+
             return webserviceResult;
         }
         public static RequestActivationCodeOutput RequestActivationCode(string mobileNumber)
@@ -100,6 +130,11 @@ namespace GhabzinoBot
                     Parameters = new RequestActivationCodeInputParams() { ApplicationType = ProjectValues.ApplicationType, ApplicationVersion = ProjectValues.ApplicationVersion, MobileNumber = mobileNumber }
                 });
             client.Close();
+
+            if (string.Equals(webserviceResult.Status.Code, "G00002", StringComparison.OrdinalIgnoreCase))
+            {
+                DataHandler.SaveUserInfo(new UserInfo { UserState = UserState.NotRegistered });
+            }
 
             return webserviceResult;
         }
@@ -114,11 +149,15 @@ namespace GhabzinoBot
                 });
             client.Close();
 
+            if (string.Equals(webserviceResult.Status.Code, "G00002", StringComparison.OrdinalIgnoreCase))
+            {
+                DataHandler.SaveUserInfo(new UserInfo { UserState = UserState.NotRegistered });
+            }
+
             return webserviceResult;
         }
-        public static ReportNewPaymentOutput ReportNewPayment(string token,/*int parametersLength,*/ params ReportNewPaymentInputParams[] reportNewPaymentInputParams)
+        public static ReportNewPaymentOutput ReportNewPayment(string token, params ReportNewPaymentInputParams[] reportNewPaymentInputParams)
         {
-            DataHandler.Log(JsonConvert.SerializeObject(reportNewPaymentInputParams));//???
             CoreClient client = new CoreClient(ProjectValues.EndpointConfigurationName);
 
             var webserviceResult = client.ReportNewPayment(
@@ -128,6 +167,30 @@ namespace GhabzinoBot
                     Parameters = reportNewPaymentInputParams,
                 });
             client.Close();
+
+            if (string.Equals(webserviceResult.Status.Code, "G00002", StringComparison.OrdinalIgnoreCase))
+            {
+                DataHandler.SaveUserInfo(new UserInfo { UserState = UserState.NotRegistered });
+            }
+
+            return webserviceResult;
+        }
+        public static GetEndUserPaymentHistoryDetailOutput GetEndUserPaymentHistoryDetail(string token, string billType = null)
+        {
+            CoreClient client = new CoreClient(ProjectValues.EndpointConfigurationName);
+
+            var webserviceResult = client.GetEndUserPaymentHistoryDetail(
+                new GetEndUserPaymentHistoryDetailInput()
+                {
+                    Identity = new WebServiceIdentity() { Token = token },
+                    Parameters = new GetEndUserPaymentHistoryDetailInputParams() { BillType = billType },
+                });
+            client.Close();
+
+            if (string.Equals(webserviceResult.Status.Code, "G00002", StringComparison.OrdinalIgnoreCase))
+            {
+                DataHandler.SaveUserInfo(new UserInfo { UserState = UserState.NotRegistered });
+            }
 
             return webserviceResult;
         }

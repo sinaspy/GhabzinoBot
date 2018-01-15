@@ -43,6 +43,14 @@ namespace Ayantech.WebService
         public static string MciMobileBillInquiry { get; private set; }
         public static string FixedLineBillInquiry { get; set; }
         public static string All { get; private set; }
+
+        public static string WaterBillHistory { get; private set; }
+        public static string GasBillHistory { get; private set; }
+        public static string ElectricityBillHistory { get; private set; }
+        public static string TrafficFinesHistory { get; private set; }
+        public static string MciMobileBillHistory { get; private set; }
+        public static string FixedLineBillHistory { get; set; }
+
         public static string paymensts { get; private set; }
         public static string history { get; private set; }
         public static string bill { get; set; }
@@ -203,7 +211,13 @@ namespace Ayantech.WebService
             TrafficFinesInquery = "خلافی";
             MciMobileBillInquiry = "تلفن همراه";
             FixedLineBillInquiry = "تلفن ثابت";
-            All = "همه";
+            All = "همه سوابق";
+            WaterBillHistory = "سوابق آب";
+            GasBillHistory = "سوابق گاز";
+            ElectricityBillHistory = "سوابق برق";
+            TrafficFinesHistory = "سوابق خلافی";
+            MciMobileBillHistory = "سوابق تلفن همراه";
+            FixedLineBillHistory = "سوابق تلفن ثابت";
             paymensts = "پرداختی ها";
             history = "سوابق";
             bill = "قبض";

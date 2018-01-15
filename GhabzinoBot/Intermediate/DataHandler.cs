@@ -2,6 +2,7 @@
 using GhabzinoBot.GhabzinoService;
 using Newtonsoft.Json;
 using System;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
 
@@ -11,7 +12,8 @@ namespace GhabzinoBot
     {
         public class PaymentStructure
         {
-            public string StrToken { get; set; }
+            public long userId { get; set; }
+            //public string StrToken { get; set; }
             public ReportNewPaymentInputParams[] RnpipArray { get; set; }
         }
         public class SelectedBillsStructure
@@ -57,9 +59,25 @@ namespace GhabzinoBot
                     return new UserInfo { UserId = userId };
                 }
 
-                var dbArray = result.DataSet.Tables[0].Rows[0].ItemArray;
+                var dbArray = result.DataSet.NullCheck().Tables[0].Rows[0].ItemArray;
                 Ayantech.WebService.Log.Trace(JsonConvert.SerializeObject(dbArray), sw.Elapsed.TotalMilliseconds);
-                var dbInfo = new UserInfo { UserId = (long)dbArray[0], Mobile = dbArray[1].ToString(), Token = dbArray[2].ToString(), UserState = (UserState)dbArray[3], UserField = (UserField)dbArray[4], WaterBillInquiryStep = (WaterBillInquiryStep)dbArray[5], GasBillInquiryStep = (GasBillInquiryStep)dbArray[6], ElectricityBillInquiryStep = (ElectricityBillInquiryStep)dbArray[7], MciMobileBillInquiryStep = (MciMobileBillInquiryStep)dbArray[8], FixedLineBillInquiryStep = (FixedLineBillInquiryStep)dbArray[9], TrafficFinesInquiryStep = (TrafficFinesInquiryStep)dbArray[10], BillStep = (BillStep)dbArray[11], HistoryStep = (HistoryStep)dbArray[12] };
+                //var dbInfo = new UserInfo { UserId = (long)dbArray[0], Mobile = dbArray[1].ToString(), Token = dbArray[2].ToString(), UserState = (UserState)dbArray[3], UserField = (UserField)dbArray[4], WaterBillInquiryStep = (WaterBillInquiryStep)dbArray[5], GasBillInquiryStep = (GasBillInquiryStep)dbArray[6], ElectricityBillInquiryStep = (ElectricityBillInquiryStep)dbArray[7], MciMobileBillInquiryStep = (MciMobileBillInquiryStep)dbArray[8], FixedLineBillInquiryStep = (FixedLineBillInquiryStep)dbArray[9], TrafficFinesInquiryStep = (TrafficFinesInquiryStep)dbArray[10], BillStep = (BillStep)dbArray[11], HistoryStep = (HistoryStep)dbArray[12] };
+                var dbInfo = new UserInfo
+                {
+                    UserId = (long)dbArray[0],
+                    Mobile = dbArray[1].ToString(),
+                    Token = dbArray[2].ToString(),
+                    UserState = (UserState)dbArray[3],
+                    UserField = (UserField)dbArray[4],
+                    WaterBillInquiryStep = (WaterBillInquiryStep)dbArray[5],
+                    GasBillInquiryStep = (GasBillInquiryStep)dbArray[6],
+                    ElectricityBillInquiryStep = (ElectricityBillInquiryStep)dbArray[7],
+                    MciMobileBillInquiryStep = (MciMobileBillInquiryStep)dbArray[8],
+                    FixedLineBillInquiryStep = (FixedLineBillInquiryStep)dbArray[9],
+                    TrafficFinesInquiryStep = (TrafficFinesInquiryStep)dbArray[10],
+                    BillStep = (BillStep)dbArray[11],
+                    HistoryStep = (HistoryStep)dbArray[12]
+                };
 
                 return dbInfo;
             }
@@ -89,17 +107,17 @@ namespace GhabzinoBot
 
             if (ProjectValues.UseLiveDatabase)
             {
-                var result = DataBase.SetTelegramUserInfo(userInfo.UserId, string.IsNullOrEmpty(userInfo.Mobile) ? "" : userInfo.Mobile, userInfo.Token, (int)userInfo.UserState, (int)userInfo.UserField, (int)userInfo.WaterBillInquiryStep, (int)userInfo.GasBillInquiryStep, (int)userInfo.ElectricityBillInquiryStep, (int)userInfo.MciMobileBillInquiryStep, (int)userInfo.FixedLineBillInquiryStep, (int)userInfo.TrafficFinesInquiryStep, (int)userInfo.BillStep, (int)userInfo.HistoryStep);
+                var result = DataBase.SetTelegramUserInfo(userInfo.UserId, userInfo.Mobile, userInfo.Token, (int)userInfo.UserState, (int)userInfo.UserField, (int)userInfo.WaterBillInquiryStep, (int)userInfo.GasBillInquiryStep, (int)userInfo.ElectricityBillInquiryStep, (int)userInfo.MciMobileBillInquiryStep, (int)userInfo.FixedLineBillInquiryStep, (int)userInfo.TrafficFinesInquiryStep, (int)userInfo.BillStep, (int)userInfo.HistoryStep);
                 if (result.HasError)
                 {
                     Ayantech.WebService.Log.Error("DB: SP Has Error", sw.Elapsed.TotalMilliseconds);
                     return false;
                 }
-                else if (result?.DataSet?.Tables[0].Rows.Count == 0)
-                {
-                    Ayantech.WebService.Log.Info("DB: No result returned", sw.Elapsed.TotalMilliseconds);
-                    return false;
-                }
+                //else if (result?.DataSet?.Tables[0].Rows.Count == 0)
+                //{
+                //    Ayantech.WebService.Log.Info("DB: No result returned", sw.Elapsed.TotalMilliseconds);
+                //    return false;
+                //}
 
                 return true;
             }
@@ -111,31 +129,106 @@ namespace GhabzinoBot
                 return true;
             }
         }
-        public static ReportNewPaymentInputParams[] ReadPaymentInfo(string token)
+        public static ReportNewPaymentInputParams[] ReadPaymentInfo(long userId)
         {
-            using (File.AppendText(@"C:\Users\Resurrection\Desktop\payment.txt")) ;
+            var sw = Stopwatch.StartNew();
 
-            var fileContent = File.ReadAllLines(@"C:\Users\Resurrection\Desktop\payment.txt");
-
-            ReportNewPaymentInputParams[] LastPaymentRecord = null;
-
-            foreach (var record in fileContent)
+            if (ProjectValues.UseLiveDatabase)
             {
-                var currentRecord = JsonConvert.DeserializeObject<PaymentStructure>(record);
-                if (currentRecord.StrToken == token)
+                var result = DataBase.GetTelegramPaymentInfo(userId);
+                if (result.HasError)
                 {
-                    LastPaymentRecord = currentRecord.RnpipArray;
+                    Ayantech.WebService.Log.Error("DB: SP Has Error", sw.Elapsed.TotalMilliseconds);
+                    return null;
+                }
+                else if (result?.DataSet?.Tables[0].Rows.Count == 0)
+                {
+                    Ayantech.WebService.Log.Info("DB: No result returned", sw.Elapsed.TotalMilliseconds);
+                    return null;
+                }
+
+                ReportNewPaymentInputParams[] PaymentRecords = null;
+                if (result.DataSet.Tables[0].Rows.Count > 0)
+                {
+                    PaymentRecords = new ReportNewPaymentInputParams[result.DataSet.Tables[0].Rows.Count];
+                    Ayantech.WebService.Log.Trace("Number of payment records: " + result.DataSet.Tables[0].Rows.Count, sw.Elapsed.TotalMilliseconds);
+                }
+
+                for (int i = 0; i < result.DataSet.Tables[0].Rows.Count; i++)
+                {
+                    var dbArray = result.DataSet.Tables[0].Rows[i].ItemArray;
+                    Ayantech.WebService.Log.Trace(JsonConvert.SerializeObject(dbArray), sw.Elapsed.TotalMilliseconds);
+                    var paymentRecord = new ReportNewPaymentInputParams { BillID = dbArray[0].ToString(), PaymentID = dbArray[1].ToString() };
+                    PaymentRecords[i] = paymentRecord;
 
                 }
+
+                return PaymentRecords;
             }
+            else
+            {
+                using (File.AppendText(@"C:\Users\Resurrection\Desktop\payment.txt")) ;
 
-            return LastPaymentRecord;
+                var fileContent = File.ReadAllLines(@"C:\Users\Resurrection\Desktop\payment.txt");
+
+                ReportNewPaymentInputParams[] LastPaymentRecord = null;
+
+                foreach (var record in fileContent)
+                {
+                    var currentRecord = JsonConvert.DeserializeObject<PaymentStructure>(record);
+                    if (currentRecord.userId == userId)
+                    {
+                        LastPaymentRecord = currentRecord.RnpipArray;
+
+                    }
+                }
+
+                return LastPaymentRecord;
+            }
         }
-        public static bool SavePaymentInfo(string token, params ReportNewPaymentInputParams[] payments)
+        public static bool SavePaymentInfo(long userId, params ReportNewPaymentInputParams[] payments)
         {
-            var str = JsonConvert.SerializeObject(new PaymentStructure { StrToken = token, RnpipArray = payments });
-            File.AppendAllLines(@"C:\Users\Resurrection\Desktop\payment.txt", new string[] { str });
+            var sw = Stopwatch.StartNew();
 
+            if (ProjectValues.UseLiveDatabase)
+            {
+                DataTable dt = new DataTable("TelegramPaymentInfoTableType");
+                dt.Columns.Add("billID", typeof(string));
+                dt.Columns.Add("paymentID", typeof(string));
+
+                foreach (var payment in payments)
+                {
+                    dt.Rows.Add(new object[] { payment.BillID, payment.PaymentID });
+                }
+
+
+                var result = DataBase.SetTelegramPaymentInfo(userId, dt);
+                if (result.HasError)
+                {
+                    Ayantech.WebService.Log.Error("DB: SP Has Error", sw.Elapsed.TotalMilliseconds);
+                    return false;
+                }
+                //else if (result?.DataSet?.Tables[0].Rows.Count == 0)
+                //{
+                //    Ayantech.WebService.Log.Info("DB: No result returned", sw.Elapsed.TotalMilliseconds);
+                //    return false;
+                //}
+
+
+
+                return true;
+            }
+            else
+            {
+
+
+
+
+                var str = JsonConvert.SerializeObject(new PaymentStructure { userId = userId, RnpipArray = payments });
+                File.AppendAllLines(@"C:\Users\Resurrection\Desktop\payment.txt", new string[] { str });
+
+
+            }
             return true;
         }
 

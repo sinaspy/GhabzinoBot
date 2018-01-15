@@ -99,7 +99,7 @@ namespace Ayantech.WebService
             var storedProcedureName = "ud_prc_setTelegramUserInfo";
 
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.BigInt, ParameterName = "@telegramID", Value = telegramId });
-            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.VarChar, ParameterName = "@mobileNumber", Value = mobileNumber });
+            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.VarChar, ParameterName = "@mobileNumber", Value = string.IsNullOrEmpty(mobileNumber) ? null : mobileNumber });
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.VarChar, ParameterName = "@token", Value = token });
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@userState", Value = userState });
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@userField", Value = userField });
@@ -121,5 +121,23 @@ namespace Ayantech.WebService
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.BigInt, ParameterName = "@telegramID", Value = telegramId });
             return ExecuteStoredProcedure(storedProcedureName, sqlParameters);
         }
+        public static QueryResult SetTelegramPaymentInfo(long telegramId, DataTable dt)
+        {
+            var sqlParameters = new List<SqlParameter>();
+            var storedProcedureName = "ud_prc_setTelegramPaymentInfo";
+
+            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.BigInt, ParameterName = "@telegramID", Value = telegramId });
+            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Structured, ParameterName = "@paymentInfo", Value = dt });
+            return ExecuteStoredProcedure(storedProcedureName, sqlParameters);
+        }
+        public static QueryResult GetTelegramPaymentInfo(long telegramId)
+        {
+            var sqlParameters = new List<SqlParameter>();
+            var storedProcedureName = "ud_prc_getTelegramPaymentInfo";
+
+            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.BigInt, ParameterName = "@telegramID", Value = telegramId });
+            return ExecuteStoredProcedure(storedProcedureName, sqlParameters);
+        }
+
     }
 }

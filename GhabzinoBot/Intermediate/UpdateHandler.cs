@@ -37,71 +37,77 @@ namespace GhabzinoBot
                     return;
                 }
 
-                switch (messageText.ToLower())
+                if (UserInfo.UserField == UserField.History)
                 {
-                    case ConstantStrings.start:
-                    case ConstantStrings.returnToMainMenu:
-                        UserInfo.UserField = UserField.None;
-                        TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.MainMenu, ConstantStrings.MainMenuDescription);
-                        break;
-
-                    case ConstantStrings.WaterBillInquiry:
-                        UserInfo.UserField = UserField.WaterBillInquiry;
-                        UserInfo.WaterBillInquiryStep = WaterBillInquiryStep.None;
-                        WaterBillInquiry();
-                        break;
-
-                    case ConstantStrings.GasBillInquiry:
-                        UserInfo.UserField = UserField.GasBillInquiry;
-                        UserInfo.GasBillInquiryStep = GasBillInquiryStep.None;
-                        GasBillInquiry();
-                        break;
-
-                    case ConstantStrings.ElectricityBillInquiry:
-                        UserInfo.UserField = UserField.ElectricityBillInquiry;
-                        UserInfo.ElectricityBillInquiryStep = ElectricityBillInquiryStep.None;
-                        ElectricityBillInquiry();
-                        break;
-
-                    case ConstantStrings.MciMobileBillInquiry:
-                        UserInfo.UserField = UserField.MciMobileBillInquiry;
-                        UserInfo.MciMobileBillInquiryStep = MciMobileBillInquiryStep.None;
-                        MciMobileBillInquiry();
-                        break;
-
-                    case ConstantStrings.FixedLineBillInquiry:
-                        UserInfo.UserField = UserField.FixedLineBillInquiry;
-                        UserInfo.FixedLineBillInquiryStep = FixedLineBillInquiryStep.None;
-                        FixedLineBillInquiry();
-                        break;
-
-                    case ConstantStrings.TrafficFinesInquery:
-                        UserInfo.UserField = UserField.TrafficFinesInquery;
-                        UserInfo.TrafficFinesInquiryStep = TrafficFinesInquiryStep.None;
-                        TrafficFinesInquiry();
-                        break;
-
-                    case ConstantStrings.paymensts:
-                        //
-                        break;
-
-                    case ConstantStrings.history:
-                        UserInfo.UserField = UserField.History;
-                        UserInfo.HistoryStep = HistoryStep.None;
-                        History();
-                        break;
-
-                    case ConstantStrings.bill:
-                        UserInfo.UserField = UserField.Bill;
-                        UserInfo.BillStep = BillStep.None;
-                        Bill();
-                        break;
-
-                    default:
-                        ProcessRequest(messageText);
-                        break;
+                    History(messageText);
                 }
+                else
+                {
+                    switch (messageText.ToLower())
+                    {
+                        case ConstantStrings.start:
+                        case ConstantStrings.returnToMainMenu:
+                            UserInfo.UserField = UserField.None;
+                            TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.MainMenu, ConstantStrings.MainMenuDescription);
+                            break;
 
+                        case ConstantStrings.WaterBillInquiry:
+                            UserInfo.UserField = UserField.WaterBillInquiry;
+                            UserInfo.WaterBillInquiryStep = WaterBillInquiryStep.None;
+                            WaterBillInquiry();
+                            break;
+
+                        case ConstantStrings.GasBillInquiry:
+                            UserInfo.UserField = UserField.GasBillInquiry;
+                            UserInfo.GasBillInquiryStep = GasBillInquiryStep.None;
+                            GasBillInquiry();
+                            break;
+
+                        case ConstantStrings.ElectricityBillInquiry:
+                            UserInfo.UserField = UserField.ElectricityBillInquiry;
+                            UserInfo.ElectricityBillInquiryStep = ElectricityBillInquiryStep.None;
+                            ElectricityBillInquiry();
+                            break;
+
+                        case ConstantStrings.MciMobileBillInquiry:
+                            UserInfo.UserField = UserField.MciMobileBillInquiry;
+                            UserInfo.MciMobileBillInquiryStep = MciMobileBillInquiryStep.None;
+                            MciMobileBillInquiry();
+                            break;
+
+                        case ConstantStrings.FixedLineBillInquiry:
+                            UserInfo.UserField = UserField.FixedLineBillInquiry;
+                            UserInfo.FixedLineBillInquiryStep = FixedLineBillInquiryStep.None;
+                            FixedLineBillInquiry();
+                            break;
+
+                        case ConstantStrings.TrafficFinesInquery:
+                            UserInfo.UserField = UserField.TrafficFinesInquery;
+                            UserInfo.TrafficFinesInquiryStep = TrafficFinesInquiryStep.None;
+                            TrafficFinesInquiry();
+                            break;
+
+                        case ConstantStrings.paymensts:
+                            //
+                            break;
+
+                        case ConstantStrings.history:
+                            UserInfo.UserField = UserField.History;
+                            UserInfo.HistoryStep = HistoryStep.None;
+                            History();
+                            break;
+
+                        case ConstantStrings.bill:
+                            UserInfo.UserField = UserField.Bill;
+                            UserInfo.BillStep = BillStep.None;
+                            Bill();
+                            break;
+
+                        default:
+                            ProcessRequest(messageText);
+                            break;
+                    }
+                }
                 DataHandler.SaveUserInfo(UserInfo);
             }
             catch (Exception ex)
@@ -315,6 +321,21 @@ namespace GhabzinoBot
 
             return outputString;
         }
+        private string FormatPaymentHistoryDetails(GetEndUserPaymentHistoryDetailOutput inputObj, string messageText)
+        {
+            string outputString = string.Empty;
+
+            outputString += $"تعداد کل قبوض پرداخت شده ";
+            if (!string.Equals(messageText, ProjectValues.All, StringComparison.OrdinalIgnoreCase))
+            {
+                outputString += $"از نوع {messageText}";
+            }
+            outputString += $": {inputObj.Parameters.TotalBillsCount}{Environment.NewLine}";
+            outputString += $"کل مبلغ پرداخت شده: {Helper.ToPersianNumber(Helper.ToTomanCurrency(inputObj.Parameters.TotalAmount))} تومان{Environment.NewLine}";
+            outputString += Environment.NewLine;
+
+            return outputString;
+        }
         private void Register(string userInputText = "")
         {
             switch (UserInfo.UserState)
@@ -447,7 +468,7 @@ namespace GhabzinoBot
 
                         if (WebserviceResult.Parameters.ValidForPayment)
                         {
-                            DataHandler.SavePaymentInfo(UserInfo.Token, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.BillID, PaymentID = WebserviceResult.Parameters.PaymentID } });
+                            DataHandler.SavePaymentInfo(UserInfo.UserId, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.BillID, PaymentID = WebserviceResult.Parameters.PaymentID } });
                             TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.AddPayment, formattedBill);
                             UserInfo.WaterBillInquiryStep = WaterBillInquiryStep.Inqueried;
                         }
@@ -467,7 +488,7 @@ namespace GhabzinoBot
                     break;
 
                 case WaterBillInquiryStep.Inqueried:
-                    var WebserviceResult2 = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, DataHandler.ReadPaymentInfo(UserInfo.Token));
+                    var WebserviceResult2 = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, DataHandler.ReadPaymentInfo(UserInfo.UserId));
                     if (WebserviceResult2.Status.Code == ConstantStrings.WebserviceStatusSuccess)
                     {
                         TelegramApi.ShowInlineKeyboard(UserInfo.UserId, KeyboardType.GoToPaymentPageSingle, ConstantStrings.PayInlineButton, WebserviceResult2.Parameters.PaymentLink);
@@ -502,7 +523,7 @@ namespace GhabzinoBot
 
                         if (WebserviceResult.Parameters.ValidForPayment)
                         {
-                            DataHandler.SavePaymentInfo(UserInfo.Token, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.BillID, PaymentID = WebserviceResult.Parameters.PaymentID } });
+                            DataHandler.SavePaymentInfo(UserInfo.UserId, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.BillID, PaymentID = WebserviceResult.Parameters.PaymentID } });
                             TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.AddPayment, formattedBill);
                             UserInfo.GasBillInquiryStep = GasBillInquiryStep.Inqueried;
                         }
@@ -522,7 +543,7 @@ namespace GhabzinoBot
                     break;
 
                 case GasBillInquiryStep.Inqueried:
-                    var WebserviceResult2 = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, DataHandler.ReadPaymentInfo(UserInfo.Token));
+                    var WebserviceResult2 = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, DataHandler.ReadPaymentInfo(UserInfo.UserId));
                     if (WebserviceResult2.Status.Code == ConstantStrings.WebserviceStatusSuccess)
                     {
                         TelegramApi.ShowInlineKeyboard(UserInfo.UserId, KeyboardType.GoToPaymentPageSingle, ConstantStrings.PayInlineButton, WebserviceResult2.Parameters.PaymentLink);
@@ -557,7 +578,7 @@ namespace GhabzinoBot
 
                         if (WebserviceResult.Parameters.ValidForPayment)
                         {
-                            DataHandler.SavePaymentInfo(UserInfo.Token, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.BillID, PaymentID = WebserviceResult.Parameters.PaymentID } });
+                            DataHandler.SavePaymentInfo(UserInfo.UserId, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.BillID, PaymentID = WebserviceResult.Parameters.PaymentID } });
                             TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.AddPayment, formattedBill);
                             UserInfo.ElectricityBillInquiryStep = ElectricityBillInquiryStep.Inqueried;
                         }
@@ -577,7 +598,7 @@ namespace GhabzinoBot
                     break;
 
                 case ElectricityBillInquiryStep.Inqueried:
-                    var WebserviceResult2 = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, DataHandler.ReadPaymentInfo(UserInfo.Token));
+                    var WebserviceResult2 = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, DataHandler.ReadPaymentInfo(UserInfo.UserId));
                     if (WebserviceResult2.Status.Code == ConstantStrings.WebserviceStatusSuccess)
                     {
                         TelegramApi.ShowInlineKeyboard(UserInfo.UserId, KeyboardType.GoToPaymentPageSingle, ConstantStrings.PayInlineButton, WebserviceResult2.Parameters.PaymentLink);
@@ -615,19 +636,19 @@ namespace GhabzinoBot
 
                         if (finalIsValid && midIsValid)
                         {
-                            DataHandler.SavePaymentInfo(UserInfo.Token, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.FinalTerm.BillID, PaymentID = WebserviceResult.Parameters.FinalTerm.PaymentID }, new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.MidTerm.BillID, PaymentID = WebserviceResult.Parameters.MidTerm.PaymentID }, });
+                            DataHandler.SavePaymentInfo(UserInfo.UserId, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.FinalTerm.BillID, PaymentID = WebserviceResult.Parameters.FinalTerm.PaymentID }, new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.MidTerm.BillID, PaymentID = WebserviceResult.Parameters.MidTerm.PaymentID }, });
                             TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.AddPayment, formattedBill);
                             UserInfo.MciMobileBillInquiryStep = MciMobileBillInquiryStep.Inqueried;
                         }
                         else if (finalIsValid)
                         {
-                            DataHandler.SavePaymentInfo(UserInfo.Token, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.FinalTerm.BillID, PaymentID = WebserviceResult.Parameters.FinalTerm.PaymentID } });
+                            DataHandler.SavePaymentInfo(UserInfo.UserId, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.FinalTerm.BillID, PaymentID = WebserviceResult.Parameters.FinalTerm.PaymentID } });
                             TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.AddPayment, formattedBill);
                             UserInfo.MciMobileBillInquiryStep = MciMobileBillInquiryStep.Inqueried;
                         }
                         else if (midIsValid)
                         {
-                            DataHandler.SavePaymentInfo(UserInfo.Token, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.MidTerm.BillID, PaymentID = WebserviceResult.Parameters.MidTerm.PaymentID } });
+                            DataHandler.SavePaymentInfo(UserInfo.UserId, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.MidTerm.BillID, PaymentID = WebserviceResult.Parameters.MidTerm.PaymentID } });
                             TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.AddPayment, formattedBill);
                             UserInfo.MciMobileBillInquiryStep = MciMobileBillInquiryStep.Inqueried;
                         }
@@ -647,7 +668,7 @@ namespace GhabzinoBot
                     break;
 
                 case MciMobileBillInquiryStep.Inqueried:
-                    var newPaymentInputParams = DataHandler.ReadPaymentInfo(UserInfo.Token);
+                    var newPaymentInputParams = DataHandler.ReadPaymentInfo(UserInfo.UserId);
 
                     if (newPaymentInputParams.Length == 2)//Showing 2 buttons
                     {
@@ -714,19 +735,19 @@ namespace GhabzinoBot
 
                         if (finalIsValid && midIsValid)
                         {
-                            DataHandler.SavePaymentInfo(UserInfo.Token, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.FinalTerm.BillID, PaymentID = WebserviceResult.Parameters.FinalTerm.PaymentID }, new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.MidTerm.BillID, PaymentID = WebserviceResult.Parameters.MidTerm.PaymentID }, });
+                            DataHandler.SavePaymentInfo(UserInfo.UserId, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.FinalTerm.BillID, PaymentID = WebserviceResult.Parameters.FinalTerm.PaymentID }, new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.MidTerm.BillID, PaymentID = WebserviceResult.Parameters.MidTerm.PaymentID }, });
                             TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.AddPayment, formattedBill);
                             UserInfo.FixedLineBillInquiryStep = FixedLineBillInquiryStep.Inqueried;
                         }
                         else if (finalIsValid)
                         {
-                            DataHandler.SavePaymentInfo(UserInfo.Token, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.FinalTerm.BillID, PaymentID = WebserviceResult.Parameters.FinalTerm.PaymentID } });
+                            DataHandler.SavePaymentInfo(UserInfo.UserId, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.FinalTerm.BillID, PaymentID = WebserviceResult.Parameters.FinalTerm.PaymentID } });
                             TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.AddPayment, formattedBill);
                             UserInfo.FixedLineBillInquiryStep = FixedLineBillInquiryStep.Inqueried;
                         }
                         else if (midIsValid)
                         {
-                            DataHandler.SavePaymentInfo(UserInfo.Token, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.MidTerm.BillID, PaymentID = WebserviceResult.Parameters.MidTerm.PaymentID } });
+                            DataHandler.SavePaymentInfo(UserInfo.UserId, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = WebserviceResult.Parameters.MidTerm.BillID, PaymentID = WebserviceResult.Parameters.MidTerm.PaymentID } });
                             TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.AddPayment, formattedBill);
                             UserInfo.FixedLineBillInquiryStep = FixedLineBillInquiryStep.Inqueried;
                         }
@@ -746,7 +767,7 @@ namespace GhabzinoBot
                     break;
 
                 case FixedLineBillInquiryStep.Inqueried:
-                    var newPaymentInputParams = DataHandler.ReadPaymentInfo(UserInfo.Token);
+                    var newPaymentInputParams = DataHandler.ReadPaymentInfo(UserInfo.UserId);
 
                     if (newPaymentInputParams.Length == 2)//Showing 2 buttons
                     {
@@ -823,7 +844,7 @@ namespace GhabzinoBot
                                     j++;
                                 }
                             }
-                            DataHandler.SavePaymentInfo(UserInfo.Token, reportNewPaymentInputParams);//مشخصات پرداخت
+                            DataHandler.SavePaymentInfo(UserInfo.UserId, reportNewPaymentInputParams);//مشخصات پرداخت
                             DataHandler.SaveTerraficFinesInfo(UserInfo.Token, terraficFines);//مشخصات خلافی
                             DataHandler.SaveTerraficFinesPage(UserInfo.Token, 0);//صفحه
                             TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.ChooseToAddPayment, formattedBill);
@@ -845,7 +866,7 @@ namespace GhabzinoBot
                     break;
 
                 case TrafficFinesInquiryStep.Inqueried:
-                    var allPagesPaymentInputParams = DataHandler.ReadPaymentInfo(UserInfo.Token);
+                    var allPagesPaymentInputParams = DataHandler.ReadPaymentInfo(UserInfo.UserId);
                     var allPagesCount = allPagesPaymentInputParams.Length;
                     var currentPageNumber = DataHandler.ReadTerraficFinesPage(UserInfo.Token);
                     var selectedPagesNumbersArray = DataHandler.ReadSelectedBillsInfo(UserInfo.Token);
@@ -971,7 +992,7 @@ namespace GhabzinoBot
                     }
                     else
                     {
-                        DataHandler.SavePaymentInfo(UserInfo.Token, new ReportNewPaymentInputParams { BillID = messageText });
+                        DataHandler.SavePaymentInfo(UserInfo.UserId, new ReportNewPaymentInputParams { BillID = messageText });
                         TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.ReturnToMainMenu, "لطفا شناسه پرداخت را وارد نمایید:");
                         UserInfo.BillStep = BillStep.Inquiring;
                     }
@@ -985,14 +1006,14 @@ namespace GhabzinoBot
                     }
                     else
                     {
-                        var webserviceResult = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, new ReportNewPaymentInputParams { BillID = DataHandler.ReadPaymentInfo(UserInfo.Token)[0].BillID, PaymentID = messageText });
+                        var webserviceResult = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, new ReportNewPaymentInputParams { BillID = DataHandler.ReadPaymentInfo(UserInfo.UserId)[0].BillID, PaymentID = messageText });
                         if (webserviceResult.Status.Code == ConstantStrings.WebserviceStatusSuccess)
                         {
                             var formattedBill = FormatBillDetails(webserviceResult) + Environment.NewLine;//???
 
                             if (webserviceResult.Parameters.Bills[0].ValidForPayment)
                             {
-                                DataHandler.SavePaymentInfo(UserInfo.Token, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = webserviceResult.Parameters.Bills[0].BillID, PaymentID = webserviceResult.Parameters.Bills[0].PaymentID } });
+                                DataHandler.SavePaymentInfo(UserInfo.UserId, new ReportNewPaymentInputParams[] { new ReportNewPaymentInputParams { BillID = webserviceResult.Parameters.Bills[0].BillID, PaymentID = webserviceResult.Parameters.Bills[0].PaymentID } });
                                 TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.AddPayment, formattedBill);
                                 UserInfo.BillStep = BillStep.Inqueried;
                             }
@@ -1013,7 +1034,7 @@ namespace GhabzinoBot
                     break;
 
                 case BillStep.Inqueried:
-                    var webserviceResult2 = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, DataHandler.ReadPaymentInfo(UserInfo.Token));
+                    var webserviceResult2 = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, DataHandler.ReadPaymentInfo(UserInfo.UserId));
                     if (webserviceResult2.Status.Code == ConstantStrings.WebserviceStatusSuccess)
                     {
                         TelegramApi.ShowInlineKeyboard(UserInfo.UserId, KeyboardType.GoToPaymentPageSingle, ConstantStrings.PayInlineButton, webserviceResult2.Parameters.PaymentLink);
@@ -1037,39 +1058,49 @@ namespace GhabzinoBot
             {
                 case HistoryStep.None:
                     TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.History, "مایلید سوابق کدام پرداختی ها را ببینید:");
+                    UserInfo.HistoryStep = HistoryStep.FieldDetermined;
                     break;
+
                 case HistoryStep.FieldDetermined:
                     string strType = null;
                     if (messageText == ProjectValues.All)
                     {
-
+                        strType = null;
                     }
                     else if (messageText == ProjectValues.WaterBillInquiry)
                     {
-
+                        strType = "Water";
                     }
                     else if (messageText == ProjectValues.ElectricityBillInquiry)
                     {
-
+                        strType = "Electric";
                     }
                     else if (messageText == ProjectValues.GasBillInquiry)
                     {
-
+                        strType = "Gas";
                     }
                     else if (messageText == ProjectValues.MciMobileBillInquiry)
                     {
-
+                        strType = "Mobile";
                     }
                     else if (messageText == ProjectValues.FixedLineBillInquiry)
                     {
-
+                        strType = "Phone";
                     }
+                    //else if (messageText == ProjectValues.Municipality)
+                    //{
+                    //    strType = "Municipality";
+                    //}
                     else if (messageText == ProjectValues.TrafficFinesInquery)
                     {
-
+                        strType = "Driving";
                     }
-                    //call webservice and show results
+                    var webserviceResult = GhabzinoCoreApi.GetEndUserPaymentHistoryDetail(UserInfo.Token, strType);
+
+                    ResetFieldAndStep();
+                    TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.ReturnToMainMenu, FormatPaymentHistoryDetails(webserviceResult, messageText));
                     break;
+
                 default:
                     break;
             }
