@@ -42,9 +42,9 @@
         //Terrafic Fines
         public const string Next = "بعدی";
         public const string Previous = "قبلی";
-        public const string AddAllToPaymentList = "همه به لیست پرداخت اضافه شوند";
-        public const string AddToPaymentList = "به لیست پرداخت اضافه شود";
-        public const string RemoveFromPaymentList = "از لیست پرداخت حذف شود";
+        public const string AddAllToPaymentList = "پرداخت همه";
+        public const string AddToPaymentList = "افزودن به لیست پرداخت";
+        public const string RemoveFromPaymentList = "حذف از لیست پرداخت";
 
     }
 }

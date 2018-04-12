@@ -17,5 +17,7 @@ namespace GhabzinoBot
         public TrafficFinesInquiryStep TrafficFinesInquiryStep { get; set; }
         public BillStep BillStep { get; set; }
         public HistoryStep HistoryStep { get; set; }
+        public int TrafficPage { get; set; }
+
     }
 }

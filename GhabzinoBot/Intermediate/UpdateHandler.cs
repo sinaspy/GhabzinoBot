@@ -273,6 +273,7 @@ namespace GhabzinoBot
                 case UserField.TrafficFinesInquery:
                     TrafficFinesInquiryOutput TrafficFinesObj = (TrafficFinesInquiryOutput)inputObj;
                     outputString += $"پلاک: {Helper.ToPersianNumber(TrafficFinesObj.Parameters.PlateNumber)}{Environment.NewLine}";
+                    outputString += $"بارکد: {Helper.ToPersianNumber(TrafficFinesObj.Parameters.Inquiry.Value)}{Environment.NewLine}";
                     outputString += $"تعداد کل جریمه های قابل پرداخت: {Helper.ToPersianNumber(TrafficFinesObj.Parameters.TotalValidForPaymentCount.ToString())}{Environment.NewLine}";
                     outputString += $"مبلغ کل: {Helper.ToPersianNumber(Helper.ToTomanCurrency(TrafficFinesObj.Parameters.TotalAmount))} تومان{Environment.NewLine}";
                     outputString += Environment.NewLine;
@@ -840,21 +841,22 @@ namespace GhabzinoBot
                                 if (item.ValidForPayment)
                                 {
                                     reportNewPaymentInputParams[j] = new ReportNewPaymentInputParams() { BillID = item.BillID, PaymentID = item.PaymentID };
-                                    terraficFines[j] = new DataHandler.TerraficFines() { City = item.City, DateTime = item.DateTime, Delivery = item.Delivery, Location = item.Location, Type = item.Type, Amount = item.Amount };
+                                    terraficFines[j] = new DataHandler.TerraficFines() { City = item.City, DateTime = item.DateTime, Delivery = item.Delivery, Location = item.Location, Type = item.Type, Amount = item.Amount, ValidForPayment = item.ValidForPayment };
                                     j++;
                                 }
                             }
                             DataHandler.SavePaymentInfo(UserInfo.UserId, reportNewPaymentInputParams);//مشخصات پرداخت
-                            DataHandler.SaveTerraficFinesInfo(UserInfo.Token, terraficFines);//مشخصات خلافی
-                            DataHandler.SaveTerraficFinesPage(UserInfo.Token, 0);//صفحه
-                            TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.ChooseToAddPayment, formattedBill);
+                            DataHandler.SaveTerraficFinesInfo(UserInfo.UserId, terraficFines);//مشخصات خلافی
+                            UserInfo.TrafficPage = 0;
+                            DataHandler.SaveUserInfo(UserInfo);
+                            TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.ChooseOrAddAllPayment, formattedBill);
                             UserInfo.TrafficFinesInquiryStep = TrafficFinesInquiryStep.Inqueried;
                         }
                         else
                         {
                             ResetFieldAndStep();
                             ShowMainMenu(formattedBill);//???
-                                                        //popup
+                                                        //popup (هیچ جریمه ی قابل پرداختی وجود ندارد)
                         }
                     }
                     else
@@ -866,109 +868,191 @@ namespace GhabzinoBot
                     break;
 
                 case TrafficFinesInquiryStep.Inqueried:
-                    var allPagesPaymentInputParams = DataHandler.ReadPaymentInfo(UserInfo.UserId);
-                    var allPagesCount = allPagesPaymentInputParams.Length;
-                    var currentPageNumber = DataHandler.ReadTerraficFinesPage(UserInfo.Token);
-                    var selectedPagesNumbersArray = DataHandler.ReadSelectedBillsInfo(UserInfo.Token);
-                    //====================================================================
-                    ReportNewPaymentInputParams[] selectedPagesPaymentInputParams = new ReportNewPaymentInputParams[selectedPagesNumbersArray.Length];
-                    for (int i = 0; i < selectedPagesNumbersArray.Length; i++)
+                    if (string.Equals(messageText, ProjectValues.payAllTraffic, StringComparison.OrdinalIgnoreCase)) //پرداخت قبض همه جرایم
                     {
-                        selectedPagesPaymentInputParams[i] = allPagesPaymentInputParams[selectedPagesNumbersArray[i]];
-                    }
-
-                    ReportNewPaymentOutput webserviceResult2 = null;
-                    if (selectedPagesNumbersArray.Length > 0)
-                    {
-                        webserviceResult2 = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, selectedPagesPaymentInputParams);
-                    }
-                    //==========================================================================
-                    var currentPageDetail = DataHandler.ReadTerraficFinesInfo(UserInfo.Token, currentPageNumber)[0];
-                    var FormattedTerraficFines = FormatTerraficFinesDetails(currentPageNumber, allPagesCount, currentPageDetail);
-                    //==========================================================================
-
-                    if (messageText == ConstantStrings.Next)
-                    {
-                        if (currentPageNumber >= allPagesCount)
+                        var WebserviceResult2 = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, DataHandler.ReadPaymentInfo(UserInfo.UserId));
+                        if (WebserviceResult2.Status.Code == ConstantStrings.WebserviceStatusSuccess)
                         {
-                            TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "همکنون در صفحه آخر هستید.");
-                        }
-                        else
-                        {
-                            DataHandler.SaveTerraficFinesPage(UserInfo.Token, ++currentPageNumber);
-                        }
-                    }
-                    else if (messageText == ConstantStrings.Previous)
-                    {
-                        if (currentPageNumber <= 0)
-                        {
-                            TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "همکنون در صفحه اول هستید.");
-                        }
-                        else
-                        {
-                            DataHandler.SaveTerraficFinesPage(UserInfo.Token, --currentPageNumber);
-                        }
-                    }
-                    else if (messageText == ConstantStrings.AddAllToPaymentList)
-                    {
-                        int[] allPages = new int[allPagesCount];
-                        for (int i = 0; i < allPagesCount; i++)
-                        {
-                            allPages[i] = i;
-                        }
-                        DataHandler.SaveSelectedBillsInfo(UserInfo.Token, allPages);
-                    }
-                    else if (messageText == ConstantStrings.AddToPaymentList)
-                    {
-                        if (selectedPagesNumbersArray.Contains(currentPageNumber))
-                        {
-                            TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "همکنون در لیست پرداخت است.");
-                        }
-                        else
-                        {
-                            selectedPagesNumbersArray = selectedPagesNumbersArray.Concat(new int[] { currentPageNumber }).ToArray();
-                            DataHandler.SaveSelectedBillsInfo(UserInfo.Token, selectedPagesNumbersArray);
-                            TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "به لیست اضافه شد.");
-                        }
-                    }
-                    else if (messageText == ConstantStrings.RemoveFromPaymentList)
-                    {
-                        if (selectedPagesNumbersArray.Contains(currentPageNumber))
-                        {
-                            selectedPagesNumbersArray = selectedPagesNumbersArray.RemoveAt(Array.IndexOf(selectedPagesNumbersArray, currentPageNumber));
-                            DataHandler.SaveSelectedBillsInfo(UserInfo.Token, selectedPagesNumbersArray);
-                            TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "از لیست حذف شد.");
-                        }
-                        else
-                        {
-                            TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "همکنون در لیست پرداخت نیست.");
-                        }
-                    }
-                    else if (messageText == ConstantStrings.payBill)
-                    {
-                        if (selectedPagesNumbersArray.Length == 0)
-                        {
-                            TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "حداقل یک قبض را انتخاب کنید.");
-                        }
-                        else if (webserviceResult2?.Status?.Code != ConstantStrings.WebserviceStatusSuccess || string.IsNullOrEmpty(webserviceResult2?.Parameters?.PaymentLink))
-                        {
-                            TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), webserviceResult2.Status.Description);
-                            //log
-                        }
-                        else
-                        {
-                            TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "در حال انتقال به درگاه بانک...");
+                            TelegramApi.ShowInlineKeyboard(UserInfo.UserId, KeyboardType.GoToPaymentPageSingle, ConstantStrings.PayInlineButton, WebserviceResult2.Parameters.PaymentLink);
+                            TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.ReturnToMainMenu, ConstantStrings.OrReturnToMainMenu);
                             ResetFieldAndStep();
                         }
+                        else
+                        {
+                            //popup
+                            ShowMainMenu(WebserviceResult2.Status.Description);//???
+                        }
                     }
-                    else
+                    else //انتخاب جرایم برای پرداخت
                     {
-                        //popup
-                        ShowMainMenu(webserviceResult2.Status.Description);//???
-                    }
+                        string[] strParams = new string[3];
+                        var allPagesPaymentInputParams = DataHandler.ReadPaymentInfo(UserInfo.UserId);
+                        var allPagesCount = allPagesPaymentInputParams.Length;
+                        var selectedPagesNumbersArray = DataHandler.ReadSelectedBillsInfo(UserInfo.UserId);
+                        //====================================================================
+                        ReportNewPaymentInputParams[] selectedPagesPaymentInputParams = new ReportNewPaymentInputParams[selectedPagesNumbersArray.Length];
+                        for (int i = 0; i < selectedPagesNumbersArray.Length; i++)
+                        {
+                            selectedPagesPaymentInputParams[i] = allPagesPaymentInputParams[selectedPagesNumbersArray[i]];
+                        }
 
-                    TelegramApi.ShowInlineKeyboard(UserInfo.UserId, KeyboardType.ChooseToAddPayment, FormattedTerraficFines, webserviceResult2?.Parameters?.PaymentLink);
-                    TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.ReturnToMainMenu, "یا به صفحه اصلی باز گردید.");
+                        ReportNewPaymentOutput webserviceResult2 = null;
+                        if (selectedPagesNumbersArray.Length > 0)
+                        {
+                            webserviceResult2 = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, selectedPagesPaymentInputParams);
+                        }
+                        //==========================================================================
+                        var allPagesDetails = DataHandler.ReadTerraficFinesInfo(UserInfo.UserId);
+                        var currentPageDetail = allPagesDetails[UserInfo.TrafficPage];
+                        //==========================================================================
+                        if (messageText == ConstantStrings.Next)
+                        {
+                            if (UserInfo.TrafficPage >= allPagesCount - 1)
+                            {
+                                TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "همکنون در صفحه آخر هستید.");
+                            }
+                            else
+                            {
+                                UserInfo.TrafficPage = UserInfo.TrafficPage + 1;
+                                currentPageDetail = allPagesDetails[UserInfo.TrafficPage];
+                            }
+                        }
+                        else if (messageText == ConstantStrings.Previous)
+                        {
+                            if (UserInfo.TrafficPage <= 0)
+                            {
+                                TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "همکنون در صفحه اول هستید.");
+                            }
+                            else
+                            {
+                                UserInfo.TrafficPage = UserInfo.TrafficPage - 1;
+                                currentPageDetail = allPagesDetails[UserInfo.TrafficPage];
+                            }
+                        }
+                        else if (messageText == ConstantStrings.AddToPaymentList)
+                        {
+                            if (!currentPageDetail.ValidForPayment)
+                            {
+                                TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "این قبض برای پرداخت معتبر نیست.");
+                            }
+                            else if (selectedPagesNumbersArray.Contains(UserInfo.TrafficPage))
+                            {
+                                TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "همکنون در لیست پرداخت است.");
+                            }
+                            else
+                            {
+                                selectedPagesNumbersArray = selectedPagesNumbersArray.Concat(new int[] { UserInfo.TrafficPage }).ToArray();
+                                //
+                                for (int i = 0; i < allPagesPaymentInputParams.Length; i++)
+                                {
+                                    var pageInputParam = allPagesPaymentInputParams[i];
+
+                                    if (pageInputParam.BillID == allPagesPaymentInputParams[UserInfo.TrafficPage].BillID && allPagesDetails[UserInfo.TrafficPage].ValidForPayment && i != UserInfo.TrafficPage)
+                                    {
+                                        selectedPagesNumbersArray = selectedPagesNumbersArray.Concat(new int[] { i }).ToArray();
+                                    }
+                                }
+                                //
+                                DataHandler.SaveSelectedBillsInfo(UserInfo.UserId, selectedPagesNumbersArray);
+
+                                TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "به لیست اضافه شد.");
+                            }
+                        }
+                        else if (messageText == ConstantStrings.RemoveFromPaymentList)
+                        {
+                            if (selectedPagesNumbersArray.Contains(UserInfo.TrafficPage))
+                            {
+                                selectedPagesNumbersArray = selectedPagesNumbersArray.RemoveAt(Array.IndexOf(selectedPagesNumbersArray, UserInfo.TrafficPage));
+                                //
+                                for (int i = 0; i < allPagesPaymentInputParams.Length; i++)
+                                {
+                                    if (allPagesPaymentInputParams[i].BillID == allPagesPaymentInputParams[UserInfo.TrafficPage].BillID)
+                                    {
+                                        if (selectedPagesNumbersArray.Contains(i))
+                                        {
+                                            selectedPagesNumbersArray = selectedPagesNumbersArray.RemoveAt(Array.IndexOf(selectedPagesNumbersArray, i));
+                                        }
+                                    }
+                                }
+                                //
+                                DataHandler.SaveSelectedBillsInfo(UserInfo.UserId, selectedPagesNumbersArray);
+                                TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "از لیست حذف شد.");
+                            }
+                            else
+                            {
+                                TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "همکنون در لیست پرداخت نیست.");
+                            }
+                        }
+                        else if (messageText == ProjectValues.payOnline)
+                        {
+                            if (selectedPagesNumbersArray.Length == 0)
+                            {
+                                TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "حداقل یک قبض را انتخاب کنید.");
+                            }
+                            else if (webserviceResult2?.Status?.Code != ConstantStrings.WebserviceStatusSuccess || string.IsNullOrEmpty(webserviceResult2?.Parameters?.PaymentLink))
+                            {
+                                TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), webserviceResult2.Status.Description);
+                                //log
+                            }
+                            else
+                            {
+                                TelegramApi.AnswerCallback(UserInfo.UserId.ToString(), "در حال انتقال به درگاه بانک...");
+                                //
+
+                                ReportNewPaymentInputParams[] selectedPagesReportNewInputParams = new ReportNewPaymentInputParams[selectedPagesNumbersArray.Length];
+                                for (int i = 0; i < selectedPagesNumbersArray.Length; i++)
+                                {
+                                    selectedPagesReportNewInputParams[i] = allPagesPaymentInputParams[selectedPagesNumbersArray[i]];
+                                }
+
+                                var WebserviceResult2 = GhabzinoCoreApi.ReportNewPayment(UserInfo.Token, selectedPagesReportNewInputParams);
+                                if (WebserviceResult2.Status.Code == ConstantStrings.WebserviceStatusSuccess)
+                                {
+                                    TelegramApi.ShowInlineKeyboard(UserInfo.UserId, KeyboardType.GoToPaymentPageSingle, ConstantStrings.PayInlineButton, WebserviceResult2.Parameters.PaymentLink);
+                                    TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.ReturnToMainMenu, ConstantStrings.OrReturnToMainMenu);
+                                    ResetFieldAndStep();
+                                }
+                                else
+                                {
+                                    //popup
+                                    ShowMainMenu(WebserviceResult2.Status.Description);//???
+                                }
+
+
+                                //
+                                ResetFieldAndStep();
+                            }
+                        }
+                        else if (messageText == ProjectValues.chooseToAdd)
+                        {
+
+                        }
+                        else
+                        {
+                            //popup
+                            Log.Test("last else in traffic");
+                            ShowMainMenu(webserviceResult2.Status.Description);//???
+                        }
+
+                        var FormattedTerraficFines = FormatTerraficFinesDetails(UserInfo.TrafficPage, allPagesCount, currentPageDetail);
+
+                        if (UserInfo.TrafficPage <= 0)
+                        {
+                            strParams[0] = "NoPrevious";
+                        }
+                        if (UserInfo.TrafficPage >= allPagesCount - 1)
+                        {
+                            strParams[0] = "NoNext";
+                        }
+                        if (!selectedPagesNumbersArray.Contains(UserInfo.TrafficPage))
+                        {
+                            strParams[1] = "AddButton";
+                        }
+                        strParams[2] = webserviceResult2?.Parameters?.PaymentLink;
+
+                        TelegramApi.ShowInlineKeyboard(UserInfo.UserId, KeyboardType.ChooseToAddPayment, FormattedTerraficFines, strParams);
+                        TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.AddPayment, "یا به صفحه اصلی باز گردید.");
+                    }
                     break;
 
                 default:

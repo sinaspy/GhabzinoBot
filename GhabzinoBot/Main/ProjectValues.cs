@@ -58,6 +58,8 @@ namespace Ayantech.WebService
         public static string payBills { get; private set; }
         public static string payBillHalfTerm { get; private set; }
         public static string payBillFullTerm { get; private set; }
+        public static string payAllTraffic { get; private set; }
+        public static string chooseToAdd { get; private set; }
         //  //Bill Inquiry - Step: None
         public static string WaterBillInquiryNone { get; private set; }
         public static string GasBillInquiryNone { get; private set; }
@@ -225,6 +227,8 @@ namespace Ayantech.WebService
             payBills = "پرداخت قبوض";
             payBillHalfTerm = "پرداخت قبض میان دوره";
             payBillFullTerm = "پرداخت قبض پایان دوره";
+            payAllTraffic = "پرداخت قبض همه جرایم";
+            chooseToAdd = "انتخاب جرایم برای پرداخت";
             //  //Bill Inquiry - Step: None
             WaterBillInquiryNone = "لطفا شناسه قبض آب را وارد کنید یا به صفحه اصلی باز گردید:";
             GasBillInquiryNone = "لطفا شناسه قبض گاز را وارد کنید یا به صفحه اصلی باز گردید:";

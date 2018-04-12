@@ -93,7 +93,7 @@ namespace Ayantech.WebService
 
             return Execute(storedProcedureName, CommandType.StoredProcedure, sqlParameters.ToArray());
         }
-        public static QueryResult SetTelegramUserInfo(long telegramId, string mobileNumber, string token, int userState, int userField, int waterBillInquiryStep, int gasBillInquiryStep, int electricityBillInquiryStep, int mciMobileBillInquiryStep, int fixedLineInquiry, int trafficFinesInquiry, int payBill, int history)
+        public static QueryResult SetTelegramUserInfo(long telegramId, string mobileNumber, string token, int userState, int userField, int waterBillInquiryStep, int gasBillInquiryStep, int electricityBillInquiryStep, int mciMobileBillInquiryStep, int fixedLineInquiry, int trafficFinesInquiry, int payBill, int history, int TrafficPage)
         {
             var sqlParameters = new List<SqlParameter>();
             var storedProcedureName = "ud_prc_setTelegramUserInfo";
@@ -111,6 +111,7 @@ namespace Ayantech.WebService
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@trafficFinesInquiry", Value = trafficFinesInquiry });
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@payBill", Value = payBill });
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@history", Value = history });
+            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@page", Value = TrafficPage });
             return ExecuteStoredProcedure(storedProcedureName, sqlParameters);
         }
         public static QueryResult GetTelegramUserInfo(long telegramId)
@@ -134,6 +135,50 @@ namespace Ayantech.WebService
         {
             var sqlParameters = new List<SqlParameter>();
             var storedProcedureName = "ud_prc_getTelegramPaymentInfo";
+
+            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.BigInt, ParameterName = "@telegramID", Value = telegramId });
+            return ExecuteStoredProcedure(storedProcedureName, sqlParameters);
+        }
+
+
+
+
+
+
+
+        public static QueryResult SetTrraficFinesInfo(long telegramId, DataTable dt)
+        {
+            var sqlParameters = new List<SqlParameter>();
+            var storedProcedureName = "ud_prc_setTelegramTrafficDetail";
+
+            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.BigInt, ParameterName = "@telegramID", Value = telegramId });
+            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Structured, ParameterName = "@trafficDetail", Value = dt });
+            return ExecuteStoredProcedure(storedProcedureName, sqlParameters);
+        }
+        public static QueryResult GetTrraficFinesInfo(long telegramId)
+        {
+            var sqlParameters = new List<SqlParameter>();
+            var storedProcedureName = "ud_prc_getTelegramTrafficDetail";
+
+            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.BigInt, ParameterName = "@telegramID", Value = telegramId });
+            return ExecuteStoredProcedure(storedProcedureName, sqlParameters);
+        }
+
+
+
+        public static QueryResult SetTrraficPages(long telegramId, DataTable dt)
+        {
+            var sqlParameters = new List<SqlParameter>();
+            var storedProcedureName = "ud_prc_setTelegramTraffic";
+
+            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.BigInt, ParameterName = "@telegramID", Value = telegramId });
+            sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.Structured, ParameterName = "@trafficID", Value = dt });
+            return ExecuteStoredProcedure(storedProcedureName, sqlParameters);
+        }
+        public static QueryResult GetTrraficPages(long telegramId)
+        {
+            var sqlParameters = new List<SqlParameter>();
+            var storedProcedureName = "ud_prc_getTelegramTraffic";
 
             sqlParameters.Add(new SqlParameter { SqlDbType = SqlDbType.BigInt, ParameterName = "@telegramID", Value = telegramId });
             return ExecuteStoredProcedure(storedProcedureName, sqlParameters);

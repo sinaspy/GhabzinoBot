@@ -35,6 +35,7 @@
         None = 6000,//default
         Inquiring = 6100,
         Inqueried = 6200,
+        Choosing = 6300,
     }
     public enum BillStep//7000
     {

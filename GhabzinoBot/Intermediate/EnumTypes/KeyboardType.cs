@@ -10,5 +10,6 @@
         AddPayment,
         ChooseToAddPayment,
         History,
+        ChooseOrAddAllPayment,
     }
 }
