@@ -394,10 +394,13 @@ namespace GhabzinoBot
                 DataTable dt = new DataTable("TelegramTrafficTableType");
                 dt.Columns.Add("trafficID", typeof(int));
 
-                foreach (var bill in selectedBills)
+                if (selectedBills != null)
                 {
-                    //var str = JsonConvert.SerializeObject(selectedBills);
-                    dt.Rows.Add(bill);
+                    foreach (var bill in selectedBills)
+                    {
+                        //var str = JsonConvert.SerializeObject(selectedBills);
+                        dt.Rows.Add(bill);
+                    }
                 }
 
                 var result = DataBase.SetTrraficPages(userId, dt);

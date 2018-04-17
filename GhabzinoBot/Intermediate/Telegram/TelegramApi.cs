@@ -174,7 +174,11 @@ namespace GhabzinoBot
                     //    _btnInlineGoToPaymentPageSingle.Url = optionalUrls?[2];
                     //}
                     InlineKeyboardButton[] navigationButtons = null;
-                    if (string.Equals(optionalUrls?[0], "NoPrevious", System.StringComparison.OrdinalIgnoreCase))
+                    if (string.Equals(optionalUrls?[0], "NoButton", System.StringComparison.OrdinalIgnoreCase))
+                    {
+                        navigationButtons = new InlineKeyboardButton[] { };
+                    }
+                    else if (string.Equals(optionalUrls?[0], "NoPrevious", System.StringComparison.OrdinalIgnoreCase))
                     {
                         navigationButtons = new InlineKeyboardButton[] { _btnInlineNext, };
                     }

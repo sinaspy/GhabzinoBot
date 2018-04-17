@@ -170,8 +170,8 @@ namespace GhabzinoBot
                     outputString += $"شناسه قبض: {Helper.ToPersianNumber(waterbillObj.Parameters.BillID)}{Environment.NewLine}";
                     outputString += $"شناسه پرداخت: {Helper.ToPersianNumber(waterbillObj.Parameters.PaymentID)}{Environment.NewLine}";
                     outputString += $"مهلت پرداخت: {Helper.ToPersianNumber(waterbillObj.Parameters.PaymentDate)}{Environment.NewLine}";
-                    outputString += $"قرائت فعلی: {Helper.ToPersianNumber(waterbillObj.Parameters.PreviousDate)}{Environment.NewLine}";
-                    outputString += $"قرائت قبلی: {Helper.ToPersianNumber(waterbillObj.Parameters.CurrentDate)}{Environment.NewLine}";
+                    outputString += $"قرائت قبلی: {Helper.ToPersianNumber(waterbillObj.Parameters.PreviousDate)}{Environment.NewLine}";
+                    outputString += $"قرائت فعلی: {Helper.ToPersianNumber(waterbillObj.Parameters.CurrentDate)}{Environment.NewLine}";
                     outputString += $"آدرس: {Helper.ToPersianNumber(waterbillObj.Parameters.Address)}{Environment.NewLine}";
                     outputString += Environment.NewLine;
                     //if (!waterbillObj.Parameters.ValidForPayment)
@@ -187,8 +187,8 @@ namespace GhabzinoBot
                     outputString += $"شناسه قبض: {Helper.ToPersianNumber(gasBillObj.Parameters.BillID)}{Environment.NewLine}";
                     outputString += $"شناسه پرداخت: {Helper.ToPersianNumber(gasBillObj.Parameters.PaymentID)}{Environment.NewLine}";
                     outputString += $"مهلت پرداخت: {Helper.ToPersianNumber(gasBillObj.Parameters.PaymentDate)}{Environment.NewLine}";
-                    outputString += $"قرائت فعلی: {Helper.ToPersianNumber(gasBillObj.Parameters.PreviousDate)}{Environment.NewLine}";
-                    outputString += $"قرائت قبلی: {Helper.ToPersianNumber(gasBillObj.Parameters.CurrentDate)}{Environment.NewLine}";
+                    outputString += $"قرائت قبلی: {Helper.ToPersianNumber(gasBillObj.Parameters.PreviousDate)}{Environment.NewLine}";
+                    outputString += $"قرائت فعلی: {Helper.ToPersianNumber(gasBillObj.Parameters.CurrentDate)}{Environment.NewLine}";
                     outputString += $"آدرس: {Helper.ToPersianNumber(gasBillObj.Parameters.Address)}{Environment.NewLine}";
                     outputString += Environment.NewLine;
                     //if (!gasBillObj.Parameters.ValidForPayment)
@@ -204,8 +204,8 @@ namespace GhabzinoBot
                     outputString += $"شناسه قبض: {Helper.ToPersianNumber(electricityBillObj.Parameters.BillID)}{Environment.NewLine}";
                     outputString += $"شناسه پرداخت: {Helper.ToPersianNumber(electricityBillObj.Parameters.PaymentID)}{Environment.NewLine}";
                     outputString += $"مهلت پرداخت: {Helper.ToPersianNumber(electricityBillObj.Parameters.PaymentDate)}{Environment.NewLine}";
-                    outputString += $"قرائت فعلی: {Helper.ToPersianNumber(electricityBillObj.Parameters.PreviousDate)}{Environment.NewLine}";
-                    outputString += $"قرائت قبلی: {Helper.ToPersianNumber(electricityBillObj.Parameters.CurrentDate)}{Environment.NewLine}";
+                    outputString += $"قرائت قبلی: {Helper.ToPersianNumber(electricityBillObj.Parameters.PreviousDate)}{Environment.NewLine}";
+                    outputString += $"قرائت فعلی: {Helper.ToPersianNumber(electricityBillObj.Parameters.CurrentDate)}{Environment.NewLine}";
                     outputString += $"آدرس: {Helper.ToPersianNumber(electricityBillObj.Parameters.Address)}{Environment.NewLine}";
                     outputString += Environment.NewLine;
                     //if (!electricityBillObj.Parameters.ValidForPayment)
@@ -847,6 +847,7 @@ namespace GhabzinoBot
                             }
                             DataHandler.SavePaymentInfo(UserInfo.UserId, reportNewPaymentInputParams);//مشخصات پرداخت
                             DataHandler.SaveTerraficFinesInfo(UserInfo.UserId, terraficFines);//مشخصات خلافی
+                            DataHandler.SaveSelectedBillsInfo(UserInfo.UserId, null);//پاک کردن لیست انتخاب شده قبلی
                             UserInfo.TrafficPage = 0;
                             DataHandler.SaveUserInfo(UserInfo);
                             TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.ChooseOrAddAllPayment, formattedBill);
@@ -1011,6 +1012,7 @@ namespace GhabzinoBot
                                     TelegramApi.ShowInlineKeyboard(UserInfo.UserId, KeyboardType.GoToPaymentPageSingle, ConstantStrings.PayInlineButton, WebserviceResult2.Parameters.PaymentLink);
                                     TelegramApi.ShowKeyboard(UserInfo.UserId, KeyboardType.ReturnToMainMenu, ConstantStrings.OrReturnToMainMenu);
                                     ResetFieldAndStep();
+                                    return;//کیبورد مربوط به انتخاب را دیگر نمایش نمی دهد
                                 }
                                 else
                                 {
@@ -1030,20 +1032,24 @@ namespace GhabzinoBot
                         else
                         {
                             //popup
-                            Log.Test("last else in traffic");
                             ShowMainMenu(webserviceResult2.Status.Description);//???
                         }
 
                         var FormattedTerraficFines = FormatTerraficFinesDetails(UserInfo.TrafficPage, allPagesCount, currentPageDetail);
 
-                        if (UserInfo.TrafficPage <= 0)
+                        if (allPagesCount == 1)
+                        {
+                            strParams[0] = "NoButton";
+                        }
+                        else if (UserInfo.TrafficPage <= 0)
                         {
                             strParams[0] = "NoPrevious";
                         }
-                        if (UserInfo.TrafficPage >= allPagesCount - 1)
+                        else if (UserInfo.TrafficPage >= allPagesCount - 1)
                         {
                             strParams[0] = "NoNext";
                         }
+
                         if (!selectedPagesNumbersArray.Contains(UserInfo.TrafficPage))
                         {
                             strParams[1] = "AddButton";
